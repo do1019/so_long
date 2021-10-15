@@ -10,7 +10,6 @@ LIBFT_DIR := libft/
 
 SRCS := main.c \
 		is_valid_argument.c \
-		is_valid_map_file.c \
 		error.c \
 		free.c
 
