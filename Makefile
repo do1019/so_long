@@ -10,8 +10,11 @@ LIBFT_DIR := libft/
 
 SRCS := main.c \
 		is_valid_argument.c \
+		is_valid_map_file.c \
+		store_map.c \
 		error.c \
-		free.c
+		free.c \
+		utils.c
 
 OBJS := $(SRCS:.c=.o)
 
@@ -25,7 +28,7 @@ $(NAME): $(OBJS)
 debug: $(NAME)
 	@make bonus -C $(LIBFT_DIR)
 	make -C $(MINILIBX_DIR)
-	$(CC) $(CFLAGS) -g  -fsanitize=address -o $(NAME) $(OBJS) $(MINILIBX_DIR)$(NAME_MINILIBX) $(LIBFT_DIR)$(NAME_LIBFT) $(OFLAGS)
+	$(CC) $(CFLAGS) -g -fsanitize=address -o $(NAME) $(OBJS) $(MINILIBX_DIR)$(NAME_MINILIBX) $(LIBFT_DIR)$(NAME_LIBFT) $(OFLAGS)
 
 clean:
 	rm -f $(OBJS) $(LIBFT_DIR)*.o $(MINILIBX_DIR)*.o

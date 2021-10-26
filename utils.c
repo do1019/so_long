@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/27 02:25:42 by dogata           ###   ########.fr       */
+/*   Created: 2021/10/26 20:47:17 by dogata            #+#    #+#             */
+/*   Updated: 2021/10/26 22:25:57 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+int	wrapped_open(char **argv)
 {
-	t_game	game;
+	int	fd;
 
-	game = (t_game){0};
-	is_valid_command_line_argument(argc, argv);
-	is_valid_map_file(argv, &game);
-	store_map(argv, &game);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == ERROR)
+		putstr_perror_exit(ERR_OPENFAIL);
+	return (fd);
+}
 
-	exit(EXIT_SUCCESS);
+void	wrapped_malloc(void **ptr, size_t size)
+{
+	*ptr = malloc(size);
+	if (!*ptr)
+		putstr_perror_exit(ERR_MALLOC);
 }

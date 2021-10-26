@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_valid_argument.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/26 20:55:22 by dogata            #+#    #+#             */
+/*   Updated: 2021/10/26 20:55:24 by dogata           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 /*
-** Check if the command line argument is valid.
+** Determines if the command line argument is valid.
 */
 void	is_valid_command_line_argument(int argc, char **argv)
 {
