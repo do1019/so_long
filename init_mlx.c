@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/27 21:57:52 by dogata           ###   ########.fr       */
+/*   Created: 2020/12/23 03:17:06 by dogata            #+#    #+#             */
+/*   Updated: 2021/10/27 13:54:56 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void	window_init(t_game *game)
 {
-	t_game	game;
+	game->win = mlx_new_window(game->mlx,
+		game->x_render_size, game->y_render_size, "so_long");
+}
 
-	game = (t_game){0};
-	is_valid_command_line_argument(argc, argv);
-	is_valid_map_file(argv, &game);
-	store_map(argv, &game);
-
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 500, 500, "test");
-	//game.x_render_size = 800;
-	//game.y_render_size = 600;
-	//img_init(&game);
-	//window_init(&game);
-	exit(EXIT_SUCCESS);
+void	img_init(t_game *game)
+{
+	game->img.img = mlx_new_image(game->mlx,
+		game->x_render_size, game->y_render_size);
+	game->img.addr = (int *)mlx_get_data_addr(game->img.img,
+		&game->img.bpp, &game->img.line_length, &game->img.endian);
 }

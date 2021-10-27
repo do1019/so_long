@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/27 02:25:56 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/27 13:56:41 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@ enum	e_err {
 	ERR_MAPEXIT,
 };
 
+typedef struct s_img
+{
+	void	*img;
+	int		*addr;
+	int		line_length;
+	int		bpp;
+	int		endian;
+	int		img_width;
+	int		img_height;
+}				t_img;
+
 typedef struct s_map
 {
 	int		**map;
@@ -63,11 +74,16 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	t_map	map;
+	t_img	img;
+	int		x_render_size;
+	int		y_render_size;
 }				t_game;
 
 void	is_valid_command_line_argument(int argc, char **argv);
 void	is_valid_map_file(char **argv, t_game *game);
 void	store_map(char **argv, t_game *game);
+void	img_init(t_game *game);
+void	window_init(t_game *game);
 
 /*
 ** utils.c

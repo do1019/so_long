@@ -12,6 +12,7 @@ SRCS := main.c \
 		is_valid_argument.c \
 		is_valid_map_file.c \
 		store_map.c \
+		init_mlx.c \
 		error.c \
 		free.c \
 		utils.c
