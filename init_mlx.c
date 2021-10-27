@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 03:17:06 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/27 23:42:13 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/28 04:31:56 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		putstr_perror_exit("init_mlx");
+		putstr_perror_exit(ERR_INITMLX);
 }
 
 void	init_window(t_game *game)

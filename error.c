@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:43:36 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/26 20:45:29 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/28 04:31:31 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 const char	*g_errstr[] = {
 	"malloc failed",
+	"init_mlx failed",
 	"Argument : Specify a map file",
 	"Argument : Invalid amount of arguments",
 	"Argument : Invalid argument",

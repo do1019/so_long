@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/28 00:39:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/28 04:31:41 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,19 @@
 
 # define SUCCESS 1
 # define ERROR -1
+
 //# define MAX_ROW 0
 //# define MAX_COL 0
 # define MAX_MAP 20
+
+# define TEX_NUM 5
 
 
 # define MIN_WALL_LIMIT 3
 
 enum	e_err {
 	ERR_MALLOC,
+	ERR_INITMLX,
 	ERR_NOARG,
 	ERR_INVAMOARG,
 	ERR_INVARG,
@@ -44,6 +48,18 @@ enum	e_err {
 	ERR_NOCOLLECT,
 	ERR_MAPEXIT,
 };
+
+//?
+typedef struct		s_texture
+{
+	double			wall_x;
+	int				tex_x;
+	int				tex_y;
+	double			step;
+	double			tex_pos;
+	int				**texture;
+	int				tex_num;
+}					t_texture;
 
 typedef struct s_img
 {
