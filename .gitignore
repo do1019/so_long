@@ -54,3 +54,4 @@ dkms.conf
 #add
 .vscode
 so_long
+./test

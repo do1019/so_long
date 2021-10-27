@@ -3,22 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 03:17:06 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/27 13:54:56 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/27 23:42:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	window_init(t_game *game)
+void	init_mlx(t_game *game)
 {
-	game->win = mlx_new_window(game->mlx,
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		putstr_perror_exit("init_mlx");
+}
+
+void	init_window(t_game *game)
+{
+	game->window = mlx_new_window(game->mlx,
 		game->x_render_size, game->y_render_size, "so_long");
 }
 
-void	img_init(t_game *game)
+void	init_img(t_game *game)
 {
 	game->img.img = mlx_new_image(game->mlx,
 		game->x_render_size, game->y_render_size);

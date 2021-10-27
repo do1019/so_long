@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/27 13:56:41 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/28 00:39:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <fcntl.h>
+# include <math.h>
 
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 
 # define SUCCESS 1
 # define ERROR -1
-# define MAX_ROW 0
-# define MAX_COL 0
+//# define MAX_ROW 0
+//# define MAX_COL 0
 # define MAX_MAP 20
+
 
 # define MIN_WALL_LIMIT 3
 
@@ -72,18 +74,20 @@ typedef struct s_map
 typedef struct s_game
 {
 	void	*mlx;
-	void	*win;
-	t_map	map;
-	t_img	img;
+	void	*window;
 	int		x_render_size;
 	int		y_render_size;
+	int		tile_size;
+	t_map	map;
+	t_img	img;
 }				t_game;
 
 void	is_valid_command_line_argument(int argc, char **argv);
 void	is_valid_map_file(char **argv, t_game *game);
 void	store_map(char **argv, t_game *game);
-void	img_init(t_game *game);
-void	window_init(t_game *game);
+void	init_mlx(t_game *game);
+void	init_img(t_game *game);
+void	init_window(t_game *game);
 
 /*
 ** utils.c
