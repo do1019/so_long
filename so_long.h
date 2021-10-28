@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/28 21:36:13 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/28 21:48:31 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ enum	e_tex_path {
 	EXIT,
 };
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	int			*wall;
 	int			*floor;
@@ -66,7 +66,7 @@ typedef struct	s_texture
 	int			**player;
 	int			**enemy;
 	int			**movement;
-}				t_texture;
+}				t_tex;
 
 typedef struct s_img
 {
@@ -102,7 +102,7 @@ typedef struct s_game
 	int		y_render_size;
 	t_map	map;
 	t_img	img;
-	t_texture tex;
+	t_tex	tex;
 }				t_game;
 
 void	is_valid_command_line_argument(int argc, char **argv);
