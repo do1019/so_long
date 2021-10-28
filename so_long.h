@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/28 04:31:41 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/28 21:36:13 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 //# define MAX_COL 0
 # define MAX_MAP 20
 
-# define TEX_NUM 5
-
+# define TILE_SIZE 32
+# define TEX_NUM 3
+# define TEX_SIZE 1024
 
 # define MIN_WALL_LIMIT 3
 
@@ -47,19 +48,25 @@ enum	e_err {
 	ERR_MAPSPAWN,
 	ERR_NOCOLLECT,
 	ERR_MAPEXIT,
+	ERR_FAILXPM,
+	ERR_INVXPM,
+};
+enum	e_tex_path {
+	WALL,
+	FLOOR,
+	EXIT,
 };
 
-//?
-typedef struct		s_texture
+typedef struct	s_texture
 {
-	double			wall_x;
-	int				tex_x;
-	int				tex_y;
-	double			step;
-	double			tex_pos;
-	int				**texture;
-	int				tex_num;
-}					t_texture;
+	int			*wall;
+	int			*floor;
+	int			*exit;
+	int			**sprite;
+	int			**player;
+	int			**enemy;
+	int			**movement;
+}				t_texture;
 
 typedef struct s_img
 {
@@ -93,14 +100,15 @@ typedef struct s_game
 	void	*window;
 	int		x_render_size;
 	int		y_render_size;
-	int		tile_size;
 	t_map	map;
 	t_img	img;
+	t_texture tex;
 }				t_game;
 
 void	is_valid_command_line_argument(int argc, char **argv);
 void	is_valid_map_file(char **argv, t_game *game);
 void	store_map(char **argv, t_game *game);
+void	load_textures(t_game *game);
 void	init_mlx(t_game *game);
 void	init_img(t_game *game);
 void	init_window(t_game *game);
