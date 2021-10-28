@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/28 21:57:31 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/28 22:05:28 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ int	main(int argc, char **argv)
 	is_valid_command_line_argument(argc, argv);
 	is_valid_map_file(argv, &game);
 	store_map(argv, &game);
-	init_game(&game);
+
+	init_mlx(&game);
+	init_img(&game);
 	load_textures(&game);
+	init_game(&game);
 
 
 	main_loop(&game);
