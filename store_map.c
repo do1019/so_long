@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   save_map.c                                         :+:      :+:    :+:   */
+/*   store_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 22:44:03 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/27 02:26:02 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/29 18:08:55 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	allocate_memory_in_map(t_game *game)
 {
 	wrapped_malloc((void **)&game->map.map, sizeof(int *) * game->map.column);
 	wrapped_malloc((void **)&game->map.base_map, \
-		sizeof(int) * game->map.row * game->map.column); //intの必要、ある？
+		sizeof(int) * game->map.row * game->map.column);
 }
 
 /*

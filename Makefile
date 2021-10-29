@@ -11,6 +11,8 @@ LIBFT_DIR := libft/
 SRCS := main.c \
 		is_valid_argument.c \
 		is_valid_map_file.c \
+		is_valid_map_file_format.c \
+		is_valid_map_file_format_utils.c \
 		store_map.c \
 		load_textures.c \
 		init_mlx.c \

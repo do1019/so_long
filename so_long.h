@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 17:38:45 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/29 18:48:26 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ enum	e_err {
 	ERR_FAILXPM,
 	ERR_INVXPM,
 };
+
 enum	e_tex_path {
 	WALL,
 	FLOOR,
@@ -119,15 +120,39 @@ typedef struct s_game
 }				t_game;
 
 void	is_valid_command_line_argument(int argc, char **argv);
+
+/*
+** is_valid_map_file.c
+*/
 void	is_valid_map_file(char **argv, t_game *game);
+
+/*
+** is_valid_map_file_format.c
+*/
+int		is_valid_map_format(char *line, t_game *game);
+
+/*
+** is_valid_map_file_format_utils.c
+*/
+bool	is_surrounded_by_walls(t_game *game, char *line);
+void	requirements_check(char c, t_game *game);
+bool	is_abnormal(t_game *game);
+bool	is_map(char c);
+
+/*
+** store_map.c
+*/
 void	store_map(char **argv, t_game *game);
+
 void	load_textures(t_game *game);
-void	create_base_image(t_game *game);
+void	draw_base_image(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
 
+/*
+** init_mlx.c
+*/
 void	init_mlx(t_game *game);
 void	init_img(t_game *game);
-void	init_base_img(t_game *game);
 void	init_window(t_game *game);
 
 /*

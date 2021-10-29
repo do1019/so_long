@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:55:58 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/26 21:16:24 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/29 18:18:52 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	is_directory(char **argv)
 	int		fd;
 
 	fd = wrapped_open(argv);
-	wrapped_malloc((void**)&buf, sizeof(char) * 1);
+	wrapped_malloc((void **)&buf, sizeof(char) * 1);
 	if ((read(fd, buf, 1)) == ERROR)
 	{
 		free(buf);
@@ -29,108 +29,6 @@ static int	is_directory(char **argv)
 	}
 	close(fd);
 	return (free_sp_rt(&buf, 0));
-}
-
-/*
-** Determine if a character is allowed as a map.
-*/
-static bool	is_map(char c)
-{
-	return (c == '0' || c == '1' || c == 'C' || c == 'E' || c == 'P');
-}
-
-/*
-** Determination of INVCHRMAP SHAPEMAP NOSURRWALL
-*/
-static bool	is_normal(t_game *game)
-{
-	return (game->map.errnum == ERR_INVCHRMAP
-		|| game->map.errnum == ERR_SHAPEMAP
-		|| game->map.errnum == ERR_NOSURRWALL);
-}
-
-/*
-** Determine the top and bottom walls.
-*/
-static bool	is_upper_or_lower_wall(char *line, t_game *game)
-{
-	int	i;
-
-	i = 0;
-	if (is_normal(game))
-		return (false);
-	while (line[i] != '\0')
-	{
-		if (!is_map(line[i]))
-		{
-			game->map.errnum = ERR_INVCHRMAP;
-			return (false);
-		}
-		else if (is_map(line[i]) && line[i] != '1')
-		{
-			game->map.errnum = ERR_NOSURRWALL;
-			return (false);
-		}
-		i++;
-	}
-	if (i < MIN_WALL_LIMIT || (game->map.final_row && game->map.row != i))
-	{
-		game->map.errnum = ERR_SHAPEMAP;
-		return (false);
-	}
-	game->map.row = i;
-	return (true);
-}
-
-/*
-** Identify the elements required for map composition.
-*/
-static void	requirements_check(char c, t_game *game)
-{
-	if (c == 'C')
-		game->map.collectible = true;
-	else if (c == 'E')
-		game->map.map_exit = true;
-	else if (c == 'P')
-		game->map.player_start_position++;
-}
-
-/*
-** Determine if the map is outside of the top and bottom walls.
-*/
-static bool	is_inside_map(char *line, t_game *game)
-{
-	int	i;
-
-	i = 0;
-	if (is_normal(game))
-		return (false);
-	while (line[i] != '\0')
-	{
-		if (i == 0 && is_map(line[i]) && line[i] != '1')
-		{
-			game->map.errnum = ERR_NOSURRWALL;
-			return (false);
-		}
-		else if (!is_map(line[i]))
-		{
-			game->map.errnum = ERR_INVCHRMAP;
-			return (false);
-		}
-		requirements_check(line[i], game);
-		i++;
-	}
-	if (i != game->map.row)
-	{
-		game->map.errnum = ERR_SHAPEMAP;
-		return (false);
-	}
-	if (line[game->map.row - 1] != '1')
-	{
-		game->map.errnum = ERR_NOSURRWALL;
-		return (false);
-	}
-	return (true);
 }
 
 /*
@@ -154,25 +52,6 @@ static bool	final_check(t_game *game)
 		return (false);
 	}
 	return (true);
-}
-
-/*
-** Determine if the format is valid.
-*/
-static int	is_valid_map_format(char *line, t_game *game)
-{
-	game->map.column++;
-	if (game->map.column == 1 && is_upper_or_lower_wall(line, game))
-		return (SUCCESS);
-	else if (is_inside_map(line, game) && !game->map.final_row)
-	{
-		game->map.exist_inside_map = true;
-		return (SUCCESS);
-	}
-	else if (game->map.exist_inside_map
-		&& is_upper_or_lower_wall(line, game) && game->map.final_row)
-			return (SUCCESS);
-	return (putstr_error(game->map.errnum));
 }
 
 /*
