@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:44:06 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 18:45:52 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/30 01:33:54 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	is_map(char c)
 /*
 ** Determination of INVCHRMAP SHAPEMAP NOSURRWALL
 */
-bool	is_abnormal(t_game *game)
+bool	is_map_error(t_game *game)
 {
 	return (game->map.errnum == ERR_INVCHRMAP
 		|| game->map.errnum == ERR_SHAPEMAP

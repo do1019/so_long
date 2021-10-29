@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 18:48:26 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/30 01:34:05 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int		is_valid_map_format(char *line, t_game *game);
 */
 bool	is_surrounded_by_walls(t_game *game, char *line);
 void	requirements_check(char c, t_game *game);
-bool	is_abnormal(t_game *game);
+bool	is_map_error(t_game *game);
 bool	is_map(char c);
 
 /*
