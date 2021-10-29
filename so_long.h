@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/28 22:39:38 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/29 17:38:45 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,21 @@
 //# define MAX_ROW 0
 //# define MAX_COL 0
 # define MAX_MAP 20
+# define MIN_WALL_LIMIT 3
 
 # define TILE_SIZE 32
 # define TEX_NUM 3
 # define TEX_SIZE 1024
 
-# define MIN_WALL_LIMIT 3
+/*
+** X11 events
+*/
+# define WINDOW_CLOSE 17
+
+/*
+** X11 masks
+*/
+# define STRUCTURE_NOTIFY 131072
 
 enum	e_err {
 	ERR_MALLOC,
@@ -55,6 +64,10 @@ enum	e_tex_path {
 	WALL,
 	FLOOR,
 	EXIT,
+	SPRITE,
+	PLAYER,
+	ENEMY,
+	MOVEMENT,
 };
 
 typedef struct s_texture
@@ -71,7 +84,7 @@ typedef struct s_texture
 typedef struct s_img
 {
 	void	*img;
-	int		*addr;
+	int		*data;
 	int		line_length;
 	int		bpp;
 	int		endian;
@@ -109,8 +122,12 @@ void	is_valid_command_line_argument(int argc, char **argv);
 void	is_valid_map_file(char **argv, t_game *game);
 void	store_map(char **argv, t_game *game);
 void	load_textures(t_game *game);
+void	create_base_image(t_game *game);
+void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
+
 void	init_mlx(t_game *game);
 void	init_img(t_game *game);
+void	init_base_img(t_game *game);
 void	init_window(t_game *game);
 
 /*
