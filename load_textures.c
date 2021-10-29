@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:49:32 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/28 21:50:32 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/29 11:30:11 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	init_textures_buffer(t_game *game)
 
 static void	load_image(t_game *game, int *texture, char *tex_path)
 {
-	int	y;
 	int	x;
+	int y;
 
 	game->img.img = mlx_xpm_file_to_image(game->mlx, tex_path, \
 		&game->img.img_width, &game->img.img_height);
@@ -37,17 +37,18 @@ static void	load_image(t_game *game, int *texture, char *tex_path)
 		putstr_error_exit(ERR_FAILXPM);
 	if (game->img.img_height != TILE_SIZE || game->img.img_width != TILE_SIZE)
 		putstr_error_exit(ERR_INVXPM);
-	game->img.addr = (int *)mlx_get_data_addr(game->img.img, \
+	game->img.data = (int *)mlx_get_data_addr(game->img.img, \
 		&game->img.bpp, &game->img.line_length, &game->img.endian);
+	//printf("%i, %i, %i, %i, %i\n", game->img.bpp, game->img.line_length, game->img.endian, game->img.img_width, game->img.img_height);
 	y = -1;
-	while (++y < (game)->img.img_height)
+	while (++y < game->img.img_height)
 	{
 		x = -1;
-		while (++x < (game)->img.img_width)
-			texture[(game)->img.img_width * y + x] = \
-				(game)->img.addr[(game)->img.img_width * y + x];
+		while (++x < game->img.img_width)
+			texture[game->img.img_width * y + x] = \
+				game->img.data[game->img.img_width * y + x];
 	}
-	mlx_destroy_image((game)->mlx, (game)->img.img);
+	mlx_destroy_image(game->mlx, game->img.img);
 }
 
 void	load_textures(t_game *game)

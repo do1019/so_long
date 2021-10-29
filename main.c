@@ -6,23 +6,40 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/28 22:09:51 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/29 11:39:40 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static int	close_window(void)
+{
+	exit(EXIT_SUCCESS);
+}
+
 int		main_loop(t_game *game)
 {
-	//game->img.img = mlx_xpm_file_to_image(game->mlx, "./assets/tile/32tile.xpm", &game->img.img_width, &game->img.img_height);
-
+	//game->img.img = game->tex.wall;
+	create_base_image(game);
+	int i = 0;
+	int j = -1;
+	int k;
+	while (++j < TILE_SIZE)
+	{
+		k = -1;
+		while (++k < TILE_SIZE)
+		{
+			my_mlx_pixel_put(game, j, k, game->tex.wall[i++]);
+		}
+	}
 	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
 	return (0);
 }
 
-static void	init_game(t_game *game)
+static void	prepare_start_game(t_game *game)
 {
-	//init_mlx(game);
+	init_mlx(game);
+	load_textures(game);
 	game->x_render_size = game->map.row * TILE_SIZE;
 	game->y_render_size = game->map.column * TILE_SIZE;
 	init_img(game);
@@ -37,15 +54,12 @@ int	main(int argc, char **argv)
 	is_valid_command_line_argument(argc, argv);
 	is_valid_map_file(argv, &game);
 	store_map(argv, &game);
+	prepare_start_game(&game);
 
-	init_mlx(&game);
-	//init_img(&game);
-	load_textures(&game);
-	init_game(&game);
-
-
+	mlx_hook(game.window, WINDOW_CLOSE, STRUCTURE_NOTIFY, &close_window, &game);
 	main_loop(&game);
 	//mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
+	mlx_destroy_image(game.mlx, game.img.img);
 	exit(EXIT_SUCCESS);
 }
