@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 11:39:40 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/29 18:05:52 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,8 @@ static int	close_window(void)
 int		main_loop(t_game *game)
 {
 	//game->img.img = game->tex.wall;
-	create_base_image(game);
-	int i = 0;
-	int j = -1;
-	int k;
-	while (++j < TILE_SIZE)
-	{
-		k = -1;
-		while (++k < TILE_SIZE)
-		{
-			my_mlx_pixel_put(game, j, k, game->tex.wall[i++]);
-		}
-	}
+	draw_base_image(game);
+	
 	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
 	return (0);
 }

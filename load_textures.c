@@ -6,16 +6,16 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:49:32 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 11:30:11 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/29 18:02:01 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 char	*g_tex_path[] = {
-	"assets/wall/32wall.xpm",
-	"assets/floor/32tile.xpm",
-	"assets/exit/32exit.xpm",
+	"assets/wall/32wallA.xpm",
+	"assets/floor/32floorB.xpm",
+	"assets/exit/exitA.xpm",
 };
 
 static void	init_textures_buffer(t_game *game)

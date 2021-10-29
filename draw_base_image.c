@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_base_image.c                                :+:      :+:    :+:   */
+/*   draw_base_image.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 00:22:30 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 11:39:19 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/29 18:06:32 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_texture(t_game *game, int *texture, int ry, int rx)
 	}
 }
 
-void	create_base_image(t_game *game)
+void	draw_base_image(t_game *game)
 {
 	int	x;
 	int	y;
