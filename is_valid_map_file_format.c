@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:16:13 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/30 01:33:50 by dogata           ###   ########.fr       */
+/*   Updated: 2021/10/30 01:36:46 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static bool	is_upper_or_lower_wall(char *line, t_game *game)
 	int	i;
 
 	i = 0;
-	if (is_abnormal(game))
+	if (is_map_error(game))
 		return (false);
 	while (line[i] != '\0')
 	{

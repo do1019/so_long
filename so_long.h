@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/30 01:34:05 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/01 04:59:08 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 ** X11 events
 */
 # define WINDOW_CLOSE 17
+# define KEY_PRESS 
 
 /*
 ** X11 masks
@@ -76,7 +77,7 @@ typedef struct s_texture
 	int			*wall;
 	int			*floor;
 	int			*exit;
-	int			**sprite;
+	int			*sprite;
 	int			**player;
 	int			**enemy;
 	int			**movement;
@@ -119,6 +120,7 @@ typedef struct s_game
 	t_tex	tex;
 }				t_game;
 
+//is_valid_argument.c
 void	is_valid_command_line_argument(int argc, char **argv);
 
 /*
@@ -144,8 +146,14 @@ bool	is_map(char c);
 */
 void	store_map(char **argv, t_game *game);
 
+//load_textures.c
 void	load_textures(t_game *game);
+
+//draw_image.c
 void	draw_base_image(t_game *game);
+
+//draw.c
+void	draw_texture(t_game *game, int *texture, int ry, int rx);
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
 
 /*
