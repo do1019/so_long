@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/01 04:48:53 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/01 05:23:28 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	close_window(void)
 int		main_loop(t_game *game)
 {
 	draw_base_image(game);
-	//draw_sprite_image(game);
+	draw_image(game, 'C', game->tex.sprite);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
 	return (0);
 }

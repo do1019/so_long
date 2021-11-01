@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:53:54 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/01 04:54:20 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/01 05:14:33 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	draw_texture(t_game *game, int *texture, int ry, int rx)
 		x = -1;
 		while (++x < TILE_SIZE)
 		{
-			my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);
+			if (texture == game->tex.sprite && texture[i] == BLACK)
+				;
+			else
+				my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);
 			i++;
 		}
 	}

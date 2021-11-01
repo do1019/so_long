@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/01 04:59:08 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/01 05:23:20 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define TILE_SIZE 32
 # define TEX_NUM 3
 # define TEX_SIZE 1024
+
+//color
+# define BLACK -16777216
 
 /*
 ** X11 events
@@ -137,7 +140,7 @@ int		is_valid_map_format(char *line, t_game *game);
 ** is_valid_map_file_format_utils.c
 */
 bool	is_surrounded_by_walls(t_game *game, char *line);
-void	requirements_check(char c, t_game *game);
+void	check_requirements(char c, t_game *game);
 bool	is_map_error(t_game *game);
 bool	is_map(char c);
 
@@ -151,6 +154,7 @@ void	load_textures(t_game *game);
 
 //draw_image.c
 void	draw_base_image(t_game *game);
+void	draw_image(t_game *game, char map_char, int *texture);
 
 //draw.c
 void	draw_texture(t_game *game, int *texture, int ry, int rx);

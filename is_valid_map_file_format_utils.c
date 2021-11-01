@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:44:06 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/30 01:33:54 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/01 05:13:58 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	is_map_error(t_game *game)
 /*
 ** Identify the elements required for map composition.
 */
-void	requirements_check(char c, t_game *game)
+void	check_requirements(char c, t_game *game)
 {
 	if (c == 'C')
 		game->map.collectible = true;
