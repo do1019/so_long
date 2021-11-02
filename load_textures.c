@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:49:32 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 22:47:40 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 01:16:37 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 const char	*g_base_tex_path[] = {
 	"assets/wall/wallA.xpm",
 	"assets/floor/floorB.xpm",
-	"assets/exit/exitA.xpm",
+	"assets/exit/exitB2.xpm",
 	"assets/sprite/spriteA.xpm",
 };
 
