@@ -21,6 +21,7 @@ int		main_loop(t_game *game)
 {
 	draw_base_image(game);
 	draw_image(game, 'C', game->tex.sprite);
+	draw_image(game, 'P', game->tex.player[FRONT1]);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
 	return (0);
 }

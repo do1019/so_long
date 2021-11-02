@@ -30,8 +30,9 @@
 # define MIN_WALL_LIMIT 3
 
 # define TILE_SIZE 32
-# define TEX_NUM 3
+//# define TEX_NUM 3
 # define TEX_SIZE 1024
+# define PLAYER_TEX_NUM 12
 
 //color
 # define BLACK -16777216
@@ -65,15 +66,27 @@ enum	e_err {
 	ERR_INVXPM,
 };
 
-enum	e_tex_path {
+enum	e_basic_tex_path {
 	WALL,
 	FLOOR,
 	EXIT,
 	SPRITE,
-	PLAYER,
-	ENEMY,
-	MOVEMENT,
 };
+
+enum	e_player_tex_path {
+	FRONT1,
+	FRONT2,
+	FRONT3,
+	BACK1,
+	BACK2,
+	BACK3,
+	LEFT1,
+	LEFT2,
+	LEFT3,
+	RIGHT1,
+	RIGHT2,
+	RIGHT3,
+} ;
 
 typedef struct s_texture
 {

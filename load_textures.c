@@ -12,27 +12,48 @@
 
 #include "so_long.h"
 
-char	*g_tex_path[] = {
-	"assets/wall/32wallA.xpm",
-	"assets/floor/32floorB.xpm",
+const char	*g_base_tex_path[] = {
+	"assets/wall/wallA.xpm",
+	"assets/floor/floorB.xpm",
 	"assets/exit/exitA.xpm",
-	"assets/sprite/spriteA.xpm"
+	"assets/sprite/spriteA.xpm",
+};
+
+const char	*g_player_tex_path[] = {
+	"assets/player/playerA/front/front1.xpm",
+	"assets/player/playerA/front/front2.xpm",
+	"assets/player/playerA/front/front3.xpm",
+	"assets/player/playerA/back/back1.xpm",
+	"assets/player/playerA/back/back2.xpm",
+	"assets/player/playerA/back/back3.xpm",
+	"assets/player/playerA/left/left1.xpm",
+	"assets/player/playerA/left/left2.xpm",
+	"assets/player/playerA/left/left3.xpm",
+	"assets/player/playerA/right/right1.xpm",
+	"assets/player/playerA/right/right2.xpm",
+	"assets/player/playerA/right/right3.xpm",
 };
 
 static void	init_textures_buffer(t_game *game)
 {
+	int	i;
+
 	wrapped_malloc((void **)&game->tex.wall, sizeof(int) * TEX_SIZE);
 	wrapped_malloc((void **)&game->tex.floor, sizeof(int) * TEX_SIZE);
 	wrapped_malloc((void **)&game->tex.exit, sizeof(int) * TEX_SIZE);
 	wrapped_malloc((void **)&game->tex.sprite, sizeof(int) * TEX_SIZE);
+	wrapped_malloc((void **)&game->tex.player, sizeof(int *) * PLAYER_TEX_NUM);
+	i = -1;
+	while (++i < PLAYER_TEX_NUM)
+		wrapped_malloc((void **)&game->tex.player[i], sizeof(int) * TEX_SIZE);
 }
 
-static void	load_image(t_game *game, int *texture, char *tex_path)
+static void	load_image(t_game *game, int *texture, const char *tex_path)
 {
 	int	x;
 	int	y;
 
-	game->img.img = mlx_xpm_file_to_image(game->mlx, tex_path, \
+	game->img.img = mlx_xpm_file_to_image(game->mlx, (char *)tex_path, \
 		&game->img.img_width, &game->img.img_height);
 	if (!game->img.img)
 		putstr_error_exit(ERR_FAILXPM);
@@ -53,9 +74,13 @@ static void	load_image(t_game *game, int *texture, char *tex_path)
 
 void	load_textures(t_game *game)
 {
+	int	i;
 	init_textures_buffer(game);
-	load_image(game, game->tex.wall, g_tex_path[WALL]);
-	load_image(game, game->tex.floor, g_tex_path[FLOOR]);
-	load_image(game, game->tex.exit, g_tex_path[EXIT]);
-	load_image(game, game->tex.sprite, g_tex_path[SPRITE]);
+	load_image(game, game->tex.wall, g_base_tex_path[WALL]);
+	load_image(game, game->tex.floor, g_base_tex_path[FLOOR]);
+	load_image(game, game->tex.exit, g_base_tex_path[EXIT]);
+	load_image(game, game->tex.sprite, g_base_tex_path[SPRITE]);
+	i = -1;
+	while (++i < PLAYER_TEX_NUM)
+		load_image(game, game->tex.player[i], g_player_tex_path[i]);
 }
