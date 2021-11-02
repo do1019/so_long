@@ -34,19 +34,29 @@
 # define TEX_SIZE 1024
 # define PLAYER_TEX_NUM 12
 
-//color
-# define BLACK -16777216
+// Color of transparent area
+# define TEX_SPRITE_BACK -16777216
+# define TEX_PLAYER_BACK 262660
 
-/*
-** X11 events
-*/
+// X11 events
 # define WINDOW_CLOSE 17
+# define FOCUS_IN 9
 # define KEY_PRESS 
 
-/*
-** X11 masks
-*/
+// X11 masks
 # define STRUCTURE_NOTIFY 131072
+# define FOCUS_CHANGE 2097152
+
+// Keys
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
+# define ARROW_L 65361
+# define ARROW_R 65363
+# define ARROW_UP 65362
+# define ARROW_DOWN 65364
 
 enum	e_err {
 	ERR_MALLOC,
@@ -139,27 +149,19 @@ typedef struct s_game
 //is_valid_argument.c
 void	is_valid_command_line_argument(int argc, char **argv);
 
-/*
-** is_valid_map_file.c
-*/
+// is_valid_map_file.c
 void	is_valid_map_file(char **argv, t_game *game);
 
-/*
-** is_valid_map_file_format.c
-*/
+// is_valid_map_file_format.c
 int		is_valid_map_format(char *line, t_game *game);
 
-/*
-** is_valid_map_file_format_utils.c
-*/
+// is_valid_map_file_format_utils.c
 bool	is_surrounded_by_walls(t_game *game, char *line);
 void	check_requirements(char c, t_game *game);
 bool	is_map_error(t_game *game);
 bool	is_map(char c);
 
-/*
-** store_map.c
-*/
+//store_map.c
 void	store_map(char **argv, t_game *game);
 
 //load_textures.c
@@ -173,29 +175,21 @@ void	draw_image(t_game *game, char map_char, int *texture);
 void	draw_texture(t_game *game, int *texture, int ry, int rx);
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
 
-/*
-** init_mlx.c
-*/
+//init_mlx.c
 void	init_mlx(t_game *game);
 void	init_img(t_game *game);
 void	init_window(t_game *game);
 
-/*
-** utils.c
-*/
+//utils.c
 int		wrapped_open(char **argv);
 void	wrapped_malloc(void **ptr, size_t size);
 
-/*
-** error.c
-*/
+//error.c
 int		putstr_error_exit(int num);
 int		putstr_perror_exit(int num);
 int		putstr_error(int num);
 
-/*
-** free.c
-*/
+//free.c
 int		free_sp_rt(char **tmp, int rt);
 
 #endif

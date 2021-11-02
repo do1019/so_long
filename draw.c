@@ -12,6 +12,19 @@
 
 #include "so_long.h"
 
+static bool	is_player_texture(t_game *game, int *texture)
+{
+	int	i;
+
+	i = -1;
+	while (++i < PLAYER_TEX_NUM)
+	{
+		if (texture == game->tex.player[i])
+			return (true);
+	}
+	return (false);
+}
+
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color)
 {
 	char	*dst;
@@ -34,10 +47,12 @@ void	draw_texture(t_game *game, int *texture, int ry, int rx)
 		x = -1;
 		while (++x < TILE_SIZE)
 		{
-			if (texture == game->tex.sprite && texture[i] == BLACK)
-				;
-			else
+			if (!(texture == game->tex.sprite && texture[i] == TEX_SPRITE_BACK) && !(is_player_texture(game, texture) && texture[i] == TEX_PLAYER_BACK))
+			{
 				my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);
+				//if (texture == game->tex.player[FRONT2])
+					//printf("%d\n", texture[i]);
+			}
 			i++;
 		}
 	}

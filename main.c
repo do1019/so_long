@@ -12,16 +12,33 @@
 
 #include "so_long.h"
 
+static int	g_called_times = 0;
+static int	g_player = 0;
+
 static int	close_window(void)
 {
 	exit(EXIT_SUCCESS);
 }
 
-int		main_loop(t_game *game)
+static int	redraw(t_game *game)
 {
+	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
+	return (0);
+}
+
+int	main_loop(t_game *game)
+{
+	g_called_times++;
+	if (g_called_times == 60)
+	{
+		g_called_times = 0;
+		g_player++;
+	}
+	if (g_player == 3)
+		g_player = 0;
 	draw_base_image(game);
 	draw_image(game, 'C', game->tex.sprite);
-	draw_image(game, 'P', game->tex.player[FRONT1]);
+	draw_image(game, 'P', game->tex.player[g_player]);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
 	return (0);
 }
@@ -46,10 +63,9 @@ int	main(int argc, char **argv)
 	store_map(argv, &game);
 	prepare_start_game(&game);
 	mlx_hook(game.window, WINDOW_CLOSE, STRUCTURE_NOTIFY, &close_window, &game);
-
-	//main_loop(&game);
+	mlx_hook(game.window, FOCUS_IN, FOCUS_CHANGE, &redraw, &game);
+	mlx_key_hook(game.window, int (*f)(), &game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
-	mlx_destroy_image(game.mlx, game.img.img);
 	exit(EXIT_SUCCESS);
 }
