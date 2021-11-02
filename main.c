@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 23:14:53 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 00:17:17 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,36 @@ static int	redraw(t_game *game)
 	return (0);
 }
 
+static void set_player_position(t_game *game)
+{
+	int	i;
+
+	i = -1;
+	while (++i < game->map.column * game->map.row)
+	{
+		if (game->map.base_map[i] == 'P')
+		{
+			game->player_pos_y = i / game->map.row;
+			game->player_pos_x = i % game->map.row;
+		}	
+	}	
+}
+
+static void set_exit_location(t_game *game)
+{
+	int	i;
+
+	i = -1;
+	while (++i < game->map.column * game->map.row)
+	{
+		if (game->map.base_map[i] == 'E')
+		{
+			game->exit_loc_y = i / game->map.row;
+			game->exit_loc_x = i % game->map.row;
+		}	
+	}	
+}
+
 static void	prepare_start_game(t_game *game)
 {
 	init_mlx(game);
@@ -31,7 +61,8 @@ static void	prepare_start_game(t_game *game)
 	game->y_render_size = game->map.column * TILE_SIZE;
 	init_img(game);
 	init_window(game);
-	get_player_position(game);
+	set_player_position(game);
+	set_exit_location(game);
 }
 
 int	main(int argc, char **argv)

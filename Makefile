@@ -9,6 +9,7 @@ MINILIBX_DIR := minilibx-linux/
 LIBFT_DIR := libft/
 
 SRCS := main.c \
+		main_loop.c \
 		is_valid_argument.c \
 		is_valid_map_file.c \
 		is_valid_map_file_format.c \

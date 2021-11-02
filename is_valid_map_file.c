@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:55:58 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 22:36:35 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 23:35:34 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static bool	final_check(t_game *game)
 		game->map.errnum = ERR_NOCOLLECT;
 		return (false);
 	}
-	else if (game->map.player_start_position != 1)
+	else if (game->map.player_start_position_num != 1)
 	{
 		game->map.errnum = ERR_MAPSPAWN;
 		return (false);

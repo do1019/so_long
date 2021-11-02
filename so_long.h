@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 23:19:08 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 00:25:49 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef struct s_map
 	bool	final_row;
 	bool	collectible;
 	bool	map_exit;
-	int		player_start_position;
+	int		player_start_position_num;
 	int		column;
 	int		row;
 	int		errnum;
@@ -142,10 +142,13 @@ typedef struct s_game
 	int		y_render_size;
 	int		player_pos_x;
 	int		player_pos_y;
+	int		exit_loc_x;
+	int		exit_loc_y;	
 	t_map	map;
 	t_img	img;
 	t_tex	tex;
 	int		move_count;
+	bool	escape;
 }				t_game;
 
 // Determines if the command line argument is valid.
