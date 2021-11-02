@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/01 05:23:20 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 22:09:35 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,9 @@ void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
 void	init_mlx(t_game *game);
 void	init_img(t_game *game);
 void	init_window(t_game *game);
+
+//move_player.c
+int	move_player(int key_code, t_game *game);
 
 //utils.c
 int		wrapped_open(char **argv);

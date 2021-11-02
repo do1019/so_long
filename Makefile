@@ -18,6 +18,7 @@ SRCS := main.c \
 		init_mlx.c \
 		draw_image.c \
 		draw.c \
+		move_player.c \
 		error.c \
 		free.c \
 		utils.c

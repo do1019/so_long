@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/01 05:23:28 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 22:07:58 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 	prepare_start_game(&game);
 	mlx_hook(game.window, WINDOW_CLOSE, STRUCTURE_NOTIFY, &close_window, &game);
 	mlx_hook(game.window, FOCUS_IN, FOCUS_CHANGE, &redraw, &game);
-	mlx_key_hook(game.window, int (*f)(), &game);
+	mlx_key_hook(game.window, &move_player, &game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	exit(EXIT_SUCCESS);
