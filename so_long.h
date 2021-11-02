@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 23:05:37 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 23:19:08 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define MIN_WALL_LIMIT 3
 
 # define TILE_SIZE 32
-//# define TEX_NUM 3
 # define TEX_SIZE 1024
 # define PLAYER_TEX_NUM 12
 
@@ -47,7 +46,7 @@
 # define STRUCTURE_NOTIFY 131072
 # define FOCUS_CHANGE 2097152
 
-// Keys
+// Key
 # define W 119
 # define A 97
 # define S 115
@@ -170,24 +169,32 @@ void	store_map(char **argv, t_game *game);
 // Load textures.
 void	load_textures(t_game *game);
 
-// draw_image.c
+// Draw the walls, floor, and exits.
 void	draw_base_image(t_game *game);
+
+// Draw the specified element.
 void	draw_image(t_game *game, char map_char, int *texture);
 
-// draw.c
+// Draw a texture at the specified location.
 void	draw_texture(t_game *game, int *texture, int ry, int rx);
+
+// Draw a color at the specified location.
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
 
-// init_mlx.c
+// Initialize mlx.
 void	init_mlx(t_game *game);
+
+// Initialize img.
 void	init_img(t_game *game);
+
+// Initialize window.
 void	init_window(t_game *game);
 
 // move_player.c
-int		move_player(int key_code, t_game *game);
+int		move_player(int key_code, t_game *game); //
 
 // main_loop.c
-int		main_loop(t_game *game);
+int		main_loop(t_game *game); //
 
 // it contains open function, 
 // and calls perror and exit functions if there is an error.
@@ -198,9 +205,14 @@ int		wrapped_open(char **argv);
 // If there is an error, call the perror and exit functions.
 void	wrapped_malloc(void **ptr, size_t size);
 
-//error.c
+// Receive the number corresponding to errstr, output it, and exit.
 int		putstr_error_exit(int num);
+
+// receive the number corresponding to errstr, 
+// output it with the perror function, and exit.
 int		putstr_perror_exit(int num);
+
+// Receive the number corresponding to errstr, output it, and return -1.
 int		putstr_error(int num);
 
 // Receive a single pointer argument by call by reference,

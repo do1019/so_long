@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:43:36 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/28 21:39:33 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 23:09:13 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ const char	*g_errstr[] = {
 	"Assets : Invalid xpm file : Valid only for xpm of size 32 * 32",
 };
 
-/*
-** Take the number corresponding to errstr, output it, and exit.
-*/
 int	putstr_error_exit(int num)
 {
 	ft_putendl_fd("\x1b[31mERROR\x1b[m", 2);
@@ -41,10 +38,6 @@ int	putstr_error_exit(int num)
 	exit(EXIT_FAILURE);
 }
 
-/*
-**  Take the number corresponding to errstr, 
-**  output it with the perror function, and exit.
-*/
 int	putstr_perror_exit(int num)
 {
 	ft_putendl_fd("\x1b[31mERROR\x1b[m", 2);
@@ -52,9 +45,6 @@ int	putstr_perror_exit(int num)
 	exit(EXIT_FAILURE);
 }
 
-/*
-** Take the number corresponding to errstr, output it, and return -1.
-*/
 int	putstr_error(int num)
 {
 	ft_putendl_fd("\x1b[31mERROR\x1b[m", 2);

@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 22:54:45 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 23:14:53 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int	redraw(t_game *game)
 	return (0);
 }
 
-// Inirialization and loading.
 static void	prepare_start_game(t_game *game)
 {
 	init_mlx(game);
