@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/03 00:17:17 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 03:47:13 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	redraw(t_game *game)
 	return (0);
 }
 
-static void set_player_position(t_game *game)
+static void get_player_position(t_game *game)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ static void set_player_position(t_game *game)
 	}	
 }
 
-static void set_exit_location(t_game *game)
+static void get_exit_location(t_game *game)
 {
 	int	i;
 
@@ -61,8 +61,8 @@ static void	prepare_start_game(t_game *game)
 	game->y_render_size = game->map.column * TILE_SIZE;
 	init_img(game);
 	init_window(game);
-	set_player_position(game);
-	set_exit_location(game);
+	get_player_position(game);
+	get_exit_location(game);
 }
 
 int	main(int argc, char **argv)
@@ -76,7 +76,8 @@ int	main(int argc, char **argv)
 	prepare_start_game(&game);
 	mlx_hook(game.window, WINDOW_CLOSE, STRUCTURE_NOTIFY, &close_window, &game);
 	mlx_hook(game.window, FOCUS_IN, FOCUS_CHANGE, &redraw, &game);
-	mlx_key_hook(game.window, &move_player, &game);
+	//mlx_hook(game.window, KEY_PRESS_EVENT, KEY_PRESS_MASK, &change_direction, &game);
+	mlx_hook(game.window, KEY_PRESS_EVENT, KEY_PRESS_MASK, &move_player, &game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	exit(EXIT_SUCCESS);

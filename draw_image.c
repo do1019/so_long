@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:50:04 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/03 01:18:43 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 03:52:29 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,23 @@ void	draw_image(t_game *game, char map_char, int *texture)
 		{
 			if (game->map.map[y][x] == map_char)
 				draw_texture(game, texture, y, x);
+		}
+	}
+}
+
+void	draw_player_image(t_game *game, int *texture)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < game->map.column)
+	{
+		x = -1;
+		while (++x < game->map.row)
+		{
+			if (game->map.map[y][x] == 'P')
+				draw_player_texture(game, texture, y, x);
 		}
 	}
 }

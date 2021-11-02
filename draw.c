@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:53:54 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/01 05:14:33 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 02:15:35 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,29 @@ void	draw_texture(t_game *game, int *texture, int ry, int rx)
 		{
 			if (!(texture == game->tex.sprite && texture[i] == TEX_SPRITE_BACK) && !(is_player_texture(game, texture) && texture[i] == TEX_PLAYER_BACK))
 			{
-				my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);
-				//if (texture == game->tex.player[FRONT2])
-					//printf("%d\n", texture[i]);
+				my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);	
+			}
+			i++;
+		}
+	}
+}
+
+void	draw_player_texture(t_game *game, int *texture, int ry, int rx)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	i = 0;
+	y = -1;
+	while (++y < TILE_SIZE)
+	{
+		x = -1;
+		while (++x < TILE_SIZE)
+		{
+			if (!is_player_texture(game, texture) && texture[i] == TEX_PLAYER_BACK)
+			{
+				my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);	
 			}
 			i++;
 		}

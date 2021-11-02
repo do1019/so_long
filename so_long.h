@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/03 00:25:49 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 03:59:31 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@
 // X11 events
 # define WINDOW_CLOSE 17
 # define FOCUS_IN 9
-# define KEY_PRESS 
+# define KEY_PRESS_EVENT 2
 
 // X11 masks
 # define STRUCTURE_NOTIFY 131072
 # define FOCUS_CHANGE 2097152
+# define KEY_PRESS_MASK 1
 
 // Key
 # define W 119
@@ -56,6 +57,12 @@
 # define ARROW_R 65363
 # define ARROW_UP 65362
 # define ARROW_DOWN 65364
+
+// direction
+# define FRONT 0
+# define BACK 3
+# define LEFT 6
+# define RIGHT 9
 
 enum	e_err {
 	ERR_MALLOC,
@@ -148,7 +155,13 @@ typedef struct s_game
 	t_img	img;
 	t_tex	tex;
 	int		move_count;
+	int		direction;
+	bool	key;
 	bool	escape;
+	int		prev_pl_pos_x;
+	int		prev_pl_pos_y;
+	int		next_pl_pos_x;
+	int		next_pl_pos_y;
 }				t_game;
 
 // Determines if the command line argument is valid.
@@ -195,6 +208,7 @@ void	init_window(t_game *game);
 
 // move_player.c
 int		move_player(int key_code, t_game *game); //
+int		change_direction(int key_code, t_game *game);
 
 // main_loop.c
 int		main_loop(t_game *game); //
