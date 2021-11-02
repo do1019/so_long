@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/30 01:34:05 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/01 05:23:20 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@
 # define TEX_NUM 3
 # define TEX_SIZE 1024
 
+//color
+# define BLACK -16777216
+
 /*
 ** X11 events
 */
 # define WINDOW_CLOSE 17
+# define KEY_PRESS 
 
 /*
 ** X11 masks
@@ -76,7 +80,7 @@ typedef struct s_texture
 	int			*wall;
 	int			*floor;
 	int			*exit;
-	int			**sprite;
+	int			*sprite;
 	int			**player;
 	int			**enemy;
 	int			**movement;
@@ -119,6 +123,7 @@ typedef struct s_game
 	t_tex	tex;
 }				t_game;
 
+//is_valid_argument.c
 void	is_valid_command_line_argument(int argc, char **argv);
 
 /*
@@ -135,7 +140,7 @@ int		is_valid_map_format(char *line, t_game *game);
 ** is_valid_map_file_format_utils.c
 */
 bool	is_surrounded_by_walls(t_game *game, char *line);
-void	requirements_check(char c, t_game *game);
+void	check_requirements(char c, t_game *game);
 bool	is_map_error(t_game *game);
 bool	is_map(char c);
 
@@ -144,8 +149,15 @@ bool	is_map(char c);
 */
 void	store_map(char **argv, t_game *game);
 
+//load_textures.c
 void	load_textures(t_game *game);
+
+//draw_image.c
 void	draw_base_image(t_game *game);
+void	draw_image(t_game *game, char map_char, int *texture);
+
+//draw.c
+void	draw_texture(t_game *game, int *texture, int ry, int rx);
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
 
 /*

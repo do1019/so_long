@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:16:13 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/30 01:33:50 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/01 05:15:26 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static bool	is_inside_map(char *line, t_game *game)
 			game->map.errnum = ERR_INVCHRMAP;
 			return (false);
 		}
-		requirements_check(line[i], game);
+		check_requirements(line[i], game);
 		i++;
 	}
 	if (!is_correct_shape_map(game, i))
@@ -75,7 +75,7 @@ static bool	is_upper_or_lower_wall(char *line, t_game *game)
 	int	i;
 
 	i = 0;
-	if (is_abnormal(game))
+	if (is_map_error(game))
 		return (false);
 	while (line[i] != '\0')
 	{

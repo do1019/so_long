@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_base_image.c                                  :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 00:22:30 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 18:11:08 by dogata           ###   ########.fr       */
+/*   Created: 2021/11/01 04:53:54 by dogata            #+#    #+#             */
+/*   Updated: 2021/11/01 05:14:33 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,11 @@ void	draw_texture(t_game *game, int *texture, int ry, int rx)
 		x = -1;
 		while (++x < TILE_SIZE)
 		{
-			my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);
-			i++;
-		}
-	}
-}
-
-void	draw_base_image(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < game->map.column)
-	{
-		x = -1;
-		while (++x < game->map.row)
-		{
-			if (game->map.map[y][x] == '1')
-				draw_texture(game, game->tex.wall, y, x);
-			else if (game->map.map[y][x] == '0')
-				draw_texture(game, game->tex.floor, y, x);
+			if (texture == game->tex.sprite && texture[i] == BLACK)
+				;
 			else
-				draw_texture(game, game->tex.exit, y, x);
+				my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);
+			i++;
 		}
 	}
 }

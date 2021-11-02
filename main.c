@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 18:05:52 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/01 05:23:28 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ static int	close_window(void)
 
 int		main_loop(t_game *game)
 {
-	//game->img.img = game->tex.wall;
 	draw_base_image(game);
-	
+	draw_image(game, 'C', game->tex.sprite);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
 	return (0);
 }
@@ -45,10 +44,10 @@ int	main(int argc, char **argv)
 	is_valid_map_file(argv, &game);
 	store_map(argv, &game);
 	prepare_start_game(&game);
-
 	mlx_hook(game.window, WINDOW_CLOSE, STRUCTURE_NOTIFY, &close_window, &game);
-	main_loop(&game);
-	//mlx_loop_hook(game.mlx, &main_loop, &game);
+
+	//main_loop(&game);
+	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	mlx_destroy_image(game.mlx, game.img.img);
 	exit(EXIT_SUCCESS);

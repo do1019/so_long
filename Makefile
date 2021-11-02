@@ -16,7 +16,8 @@ SRCS := main.c \
 		store_map.c \
 		load_textures.c \
 		init_mlx.c \
-		draw_base_image.c \
+		draw_image.c \
+		draw.c \
 		error.c \
 		free.c \
 		utils.c
