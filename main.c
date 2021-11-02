@@ -6,14 +6,11 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 22:07:58 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 22:54:45 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int	g_called_times = 0;
-static int	g_player = 0;
 
 static int	close_window(void)
 {
@@ -26,23 +23,7 @@ static int	redraw(t_game *game)
 	return (0);
 }
 
-int	main_loop(t_game *game)
-{
-	g_called_times++;
-	if (g_called_times == 60)
-	{
-		g_called_times = 0;
-		g_player++;
-	}
-	if (g_player == 3)
-		g_player = 0;
-	draw_base_image(game);
-	draw_image(game, 'C', game->tex.sprite);
-	draw_image(game, 'P', game->tex.player[g_player]);
-	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
-	return (0);
-}
-
+// Inirialization and loading.
 static void	prepare_start_game(t_game *game)
 {
 	init_mlx(game);
@@ -51,6 +32,7 @@ static void	prepare_start_game(t_game *game)
 	game->y_render_size = game->map.column * TILE_SIZE;
 	init_img(game);
 	init_window(game);
+	get_player_position(game);
 }
 
 int	main(int argc, char **argv)
@@ -58,7 +40,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	game = (t_game){0};
-	is_valid_command_line_argument(argc, argv);
+	is_valid_argument(argc, argv);
 	is_valid_map_file(argv, &game);
 	store_map(argv, &game);
 	prepare_start_game(&game);

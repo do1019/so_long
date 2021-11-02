@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:49:32 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/01 04:43:53 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 22:47:40 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ const char	*g_player_tex_path[] = {
 	"assets/player/playerA/right/right3.xpm",
 };
 
+// Initialize the texture buffer.
 static void	init_textures_buffer(t_game *game)
 {
 	int	i;
@@ -48,6 +49,7 @@ static void	init_textures_buffer(t_game *game)
 		wrapped_malloc((void **)&game->tex.player[i], sizeof(int) * TEX_SIZE);
 }
 
+// Check for errors in xpm and store the loaded image data in the buffer.
 static void	load_image(t_game *game, int *texture, const char *tex_path)
 {
 	int	x;

@@ -6,36 +6,30 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 22:44:03 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 18:08:55 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 22:32:41 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*
-** For debug
-*/
-/*
-** static void display_map(t_game *game)
-** {
-** 	int	i;
-** 	int j;
-** 
-** 	setvbuf(stdout, (char *)NULL, _IONBF, 0);
-** 	i = -1;
-** 	while (++i < game->map.column)
-** 	{
-** 		j = -1;
-** 		while (++j < game->map.row)
-** 			printf("%d", game->map.map[i][j]);
-** 		printf("\n");
-** 	}
-** }
-*/
+//// For debug
+// static void display_map(t_game *game)
+// {
+// 	int	i;
+// 	int j;
 
-/*
-** Allocate heap memory in map of game struct
-*/
+// 	setvbuf(stdout, (char *)NULL, _IONBF, 0);
+// 	i = -1;
+// 	while (++i < game->map.column)
+// 	{
+// 		j = -1;
+// 		while (++j < game->map.row)
+// 			printf("%d", game->map.map[i][j]);
+// 		printf("\n");
+// 	}
+// }
+
+// Allocate heap memory in map of game struct
 static void	allocate_memory_in_map(t_game *game)
 {
 	wrapped_malloc((void **)&game->map.map, sizeof(int *) * game->map.column);
@@ -43,9 +37,7 @@ static void	allocate_memory_in_map(t_game *game)
 		sizeof(int) * game->map.row * game->map.column);
 }
 
-/*
-** Connect lines read by get_next_line
-*/
+// Connect lines read by get_next_line
 static char	*connect_line(char *connected_line, char *line)
 {
 	char	*ret_line;
@@ -56,9 +48,7 @@ static char	*connect_line(char *connected_line, char *line)
 	return (ret_line);
 }
 
-/*
-** Store map to an array of int
-*/
+
 void	store_map(char **argv, t_game *game)
 {
 	int		fd;

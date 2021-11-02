@@ -6,16 +6,13 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:55:22 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/26 20:55:24 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 22:35:15 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*
-** Determines if the command line argument is valid.
-*/
-void	is_valid_command_line_argument(int argc, char **argv)
+void	is_valid_argument(int argc, char **argv)
 {
 	if (argc == 1 || argc > 2)
 	{

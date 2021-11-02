@@ -6,15 +6,13 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:16:13 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/01 05:15:26 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 22:43:33 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*
-** Determine if the map has the correct shape
-*/
+// Determine if the map has the correct shape.
 static bool	is_correct_shape_map(t_game *game, int i)
 {
 	if (i != game->map.row)
@@ -25,9 +23,7 @@ static bool	is_correct_shape_map(t_game *game, int i)
 	return (true);
 }
 
-/*
-** Determine if the map is outside of the top and bottom walls.
-*/
+// Determine if the map is outside of the top and bottom walls.
 static bool	is_inside_map(char *line, t_game *game)
 {
 	int	i;
@@ -57,6 +53,7 @@ static bool	is_inside_map(char *line, t_game *game)
 	return (true);
 }
 
+// Determine if the map has the correct shape for the last line.
 static bool	is_correct_shape_map_last(t_game *game, int i)
 {
 	if (i < MIN_WALL_LIMIT || (game->map.final_row && game->map.row != i))
@@ -67,9 +64,7 @@ static bool	is_correct_shape_map_last(t_game *game, int i)
 	return (true);
 }
 
-/*
-** Determine the top and bottom walls.
-*/
+// Determine the top and bottom walls.
 static bool	is_upper_or_lower_wall(char *line, t_game *game)
 {
 	int	i;
@@ -97,9 +92,6 @@ static bool	is_upper_or_lower_wall(char *line, t_game *game)
 	return (true);
 }
 
-/*
-** Determine if the format is valid.
-*/
 int	is_valid_map_format(char *line, t_game *game)
 {
 	game->map.column++;

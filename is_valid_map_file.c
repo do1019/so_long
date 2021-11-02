@@ -6,15 +6,13 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:55:58 by dogata            #+#    #+#             */
-/*   Updated: 2021/10/29 18:18:52 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 22:36:35 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*
-** Determine if it is a directory.
-*/
+// Determine if it is a directory.
 static int	is_directory(char **argv)
 {
 	char	*buf;
@@ -31,9 +29,7 @@ static int	is_directory(char **argv)
 	return (free_sp_rt(&buf, 0));
 }
 
-/*
-** Determine what elements are needed for the map.
-*/
+// Determine what elements are needed for the map.
 static bool	final_check(t_game *game)
 {
 	if (!game->map.map_exit)
@@ -54,9 +50,6 @@ static bool	final_check(t_game *game)
 	return (true);
 }
 
-/*
-** Determine if a map file is valid.
-*/
 void	is_valid_map_file(char **argv, t_game *game)
 {
 	char	*line;

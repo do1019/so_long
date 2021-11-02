@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 22:09:35 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/02 23:05:37 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,18 +141,21 @@ typedef struct s_game
 	void	*window;
 	int		x_render_size;
 	int		y_render_size;
+	int		player_pos_x;
+	int		player_pos_y;
 	t_map	map;
 	t_img	img;
 	t_tex	tex;
+	int		move_count;
 }				t_game;
 
-//is_valid_argument.c
-void	is_valid_command_line_argument(int argc, char **argv);
+// Determines if the command line argument is valid.
+void	is_valid_argument(int argc, char **argv);
 
-// is_valid_map_file.c
+// Determine if a map file is valid.
 void	is_valid_map_file(char **argv, t_game *game);
 
-// is_valid_map_file_format.c
+// Determine if the format is valid.
 int		is_valid_map_format(char *line, t_game *game);
 
 // is_valid_map_file_format_utils.c
@@ -161,30 +164,38 @@ void	check_requirements(char c, t_game *game);
 bool	is_map_error(t_game *game);
 bool	is_map(char c);
 
-//store_map.c
+// Store map to an array of int.
 void	store_map(char **argv, t_game *game);
 
-//load_textures.c
+// Load textures.
 void	load_textures(t_game *game);
 
-//draw_image.c
+// draw_image.c
 void	draw_base_image(t_game *game);
 void	draw_image(t_game *game, char map_char, int *texture);
 
-//draw.c
+// draw.c
 void	draw_texture(t_game *game, int *texture, int ry, int rx);
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
 
-//init_mlx.c
+// init_mlx.c
 void	init_mlx(t_game *game);
 void	init_img(t_game *game);
 void	init_window(t_game *game);
 
-//move_player.c
-int	move_player(int key_code, t_game *game);
+// move_player.c
+int		move_player(int key_code, t_game *game);
 
-//utils.c
+// main_loop.c
+int		main_loop(t_game *game);
+
+// it contains open function, 
+// and calls perror and exit functions if there is an error.
+// It returns file descriptor if normal.
 int		wrapped_open(char **argv);
+
+// It contains malloc and allocates bytes of size to ptr.
+// If there is an error, call the perror and exit functions.
 void	wrapped_malloc(void **ptr, size_t size);
 
 //error.c
@@ -192,7 +203,8 @@ int		putstr_error_exit(int num);
 int		putstr_perror_exit(int num);
 int		putstr_error(int num);
 
-//free.c
+// Receive a single pointer argument by call by reference,
+// free it, puts in NULL, and returns rt.
 int		free_sp_rt(char **tmp, int rt);
 
 #endif
