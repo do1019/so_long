@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/03 23:57:33 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/04 01:11:40 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@
 # define LEFT 8
 # define RIGHT 12
 
+# define MOTION_SWITCH 8
+# define MOTION_RESET 4
+# define WAIT_ESCAPE 60
+
 enum	e_err {
 	ERR_MALLOC,
 	ERR_INITMLX,
@@ -90,50 +94,42 @@ enum	e_basic_tex_path {
 	SPRITE,
 };
 
-enum	e_player_tex_path {
-	FRONT1,
-	FRONT2,
-	FRONT3,
-	BACK1,
-	BACK2,
-	BACK3,
-	LEFT1,
-	LEFT2,
-	LEFT3,
-	RIGHT1,
-	RIGHT2,
-	RIGHT3,
-} ;
+// enum	e_player_tex_path {
+// 	FRONT1,
+// 	FRONT2,
+// 	FRONT3,
+// 	BACK1,
+// 	BACK2,
+// 	BACK3,
+// 	LEFT1,
+// 	LEFT2,
+// 	LEFT3,
+// 	RIGHT1,
+// 	RIGHT2,
+// 	RIGHT3,
+// } ;
 
 typedef struct s_player
 {
-	int		player_pos_x; //
-	int		player_pos_y; //
-	int		move_count; //
-	int		direction; //
-
-	int		prev_pl_pos_x; //
-	int		prev_pl_pos_y; //
-
-	int		next_pl_pos_x;
-	int		next_pl_pos_y;
-	int		pixel_count_x;
-	int		pixel_count_y;
-	
-	int		move_draw_count; //
-
+	int		player_pos_x;
+	int		player_pos_y;
+	int		prev_pl_pos_x;
+	int		prev_pl_pos_y;
+	int		move_count;
+	int		direction;
+	int		move_draw_count;
 	int		player_tex;
 }				t_pl;
 
 typedef struct s_texture
 {
-	int			*wall;
-	int			*floor;
-	int			*exit;
-	int			*sprite;
-	int			**player;
-	int			**enemy;
-	int			**movement;
+	int		*wall;
+	int		*floor;
+	int		*exit;
+	int		*sprite;
+	int		**player;
+	int		**enemy;
+	int		**movement;
 }				t_tex;
 
 typedef struct s_img
@@ -154,12 +150,14 @@ typedef struct s_map
 	bool	initialized;
 	bool	exist_inside_map;
 	bool	final_row;
-	bool	collectible;
 	bool	map_exit;
 	int		player_start_position_num;
+	int		collectible_count;
 	int		column;
 	int		row;
 	int		errnum;
+	int		exit_loc_y;
+	int		exit_loc_x;	
 }				t_map;
 
 typedef struct s_game
@@ -168,19 +166,15 @@ typedef struct s_game
 	void	*window;
 	int		x_render_size;
 	int		y_render_size;
-	int		exit_loc_x;
-	int		exit_loc_y;	
+	int		key_code;
+	int		y_pixel;
+	int		x_pixel;
+	bool	move;
+	bool	escape;
 	t_map	map;
 	t_img	img;
 	t_tex	tex;
 	t_pl	pl;
-	int		key_code;	
-	bool	key;
-	bool	move;
-	bool	escape;
-
-	int		y_pixel;
-	int		x_pixel;
 }				t_game;
 
 // Determines if the command line argument is valid.
@@ -210,14 +204,15 @@ void	draw_base_image(t_game *game);
 // Draw the specified element.
 void	draw_image(t_game *game, char map_char, int *texture);
 
-//
+// Draw the player image;
 void	draw_player_image(t_game *game, int *texture);
 
 // Draw a texture at the specified location.
 void	draw_texture(t_game *game, int *texture, int ry, int rx);
 
-//
-void	draw_player_texture(t_game *game, int *texture, int y_pixel, int x_pixel);
+// Draw a player texture.
+void	draw_player_texture(t_game *game, int *texture, \
+	int y_pixel, int x_pixel);
 
 // Draw a color at the specified location.
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
@@ -234,8 +229,8 @@ void	init_window(t_game *game);
 // move_player.c
 int		move_player(int key_code, t_game *game); //
 
-// main_loop.c
-int		main_loop(t_game *game); //
+// Main loop.
+int		main_loop(t_game *game);
 
 // it contains open function, 
 // and calls perror and exit functions if there is an error.
@@ -245,6 +240,12 @@ int		wrapped_open(char **argv);
 // It contains malloc and allocates bytes of size to ptr.
 // If there is an error, call the perror and exit functions.
 void	wrapped_malloc(void **ptr, size_t size);
+
+// Close a window.
+int	close_window(void);
+
+// Redraw.
+int	redraw(t_game *game);
 
 // Receive the number corresponding to errstr, output it, and exit.
 int		putstr_error_exit(int num);
