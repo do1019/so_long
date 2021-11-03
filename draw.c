@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:53:54 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/03 02:15:35 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 16:24:37 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	draw_texture(t_game *game, int *texture, int ry, int rx)
 	}
 }
 
-void	draw_player_texture(t_game *game, int *texture, int ry, int rx)
+void	draw_player_texture(t_game *game, int *texture)
 {
 	int	x;
 	int	y;
@@ -71,7 +71,7 @@ void	draw_player_texture(t_game *game, int *texture, int ry, int rx)
 		{
 			if (!is_player_texture(game, texture) && texture[i] == TEX_PLAYER_BACK)
 			{
-				my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);	
+				my_mlx_pixel_put(game, game->pl.prev_pl_pos_y * (TILE_SIZE + game->pl.pixel_count_y), game->pl.prev_pl_pos_x * (TILE_SIZE + game->pl.pixel_count_x), texture[i]);	
 			}
 			i++;
 		}

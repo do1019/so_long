@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/03 03:47:13 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 16:11:58 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static void get_player_position(t_game *game)
 	{
 		if (game->map.base_map[i] == 'P')
 		{
-			game->player_pos_y = i / game->map.row;
-			game->player_pos_x = i % game->map.row;
+			game->pl.player_pos_y = i / game->map.row;
+			game->pl.player_pos_x = i % game->map.row;
 		}	
 	}	
 }

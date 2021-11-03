@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/03 03:59:31 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 16:27:51 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@
 # define ARROW_DOWN 65364
 
 // direction
-# define FRONT 0
-# define BACK 3
+# define BACK 0
+# define FRONT 3
 # define LEFT 6
 # define RIGHT 9
 
@@ -103,6 +103,21 @@ enum	e_player_tex_path {
 	RIGHT2,
 	RIGHT3,
 } ;
+
+typedef struct s_player
+{
+	int		player_pos_x;
+	int		player_pos_y;
+	int			move_count;
+	int			direction;
+	int		prev_pl_pos_x;
+	int		prev_pl_pos_y;
+	int		next_pl_pos_x;
+	int		next_pl_pos_y;
+	int		pixel_count_x;
+	int		pixel_count_y;
+	int		move_draw_count;
+}				t_pl;
 
 typedef struct s_texture
 {
@@ -147,21 +162,15 @@ typedef struct s_game
 	void	*window;
 	int		x_render_size;
 	int		y_render_size;
-	int		player_pos_x;
-	int		player_pos_y;
 	int		exit_loc_x;
 	int		exit_loc_y;	
 	t_map	map;
 	t_img	img;
 	t_tex	tex;
-	int		move_count;
-	int		direction;
+	t_pl	pl;
 	bool	key;
+	bool	move;
 	bool	escape;
-	int		prev_pl_pos_x;
-	int		prev_pl_pos_y;
-	int		next_pl_pos_x;
-	int		next_pl_pos_y;
 }				t_game;
 
 // Determines if the command line argument is valid.
@@ -191,8 +200,14 @@ void	draw_base_image(t_game *game);
 // Draw the specified element.
 void	draw_image(t_game *game, char map_char, int *texture);
 
+//
+void	draw_player_image(t_game *game, int *texture);
+
 // Draw a texture at the specified location.
 void	draw_texture(t_game *game, int *texture, int ry, int rx);
+
+//
+void	draw_player_texture(t_game *game, int *texture);
 
 // Draw a color at the specified location.
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
