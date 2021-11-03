@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/03 16:27:51 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 23:57:33 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@
 
 # define TILE_SIZE 32
 # define TEX_SIZE 1024
-# define PLAYER_TEX_NUM 12
+# define PLAYER_TEX_NUM 16
 
 // Color of transparent area
 # define TEX_SPRITE_BACK -16777216
 # define TEX_PLAYER_BACK 262660
+# define TEX_EXIT_BACK 4007227
 
 // X11 events
 # define WINDOW_CLOSE 17
@@ -59,10 +60,10 @@
 # define ARROW_DOWN 65364
 
 // direction
-# define BACK 0
-# define FRONT 3
-# define LEFT 6
-# define RIGHT 9
+# define FRONT 0
+# define BACK 4
+# define LEFT 8
+# define RIGHT 12
 
 enum	e_err {
 	ERR_MALLOC,
@@ -106,17 +107,22 @@ enum	e_player_tex_path {
 
 typedef struct s_player
 {
-	int		player_pos_x;
-	int		player_pos_y;
-	int			move_count;
-	int			direction;
-	int		prev_pl_pos_x;
-	int		prev_pl_pos_y;
+	int		player_pos_x; //
+	int		player_pos_y; //
+	int		move_count; //
+	int		direction; //
+
+	int		prev_pl_pos_x; //
+	int		prev_pl_pos_y; //
+
 	int		next_pl_pos_x;
 	int		next_pl_pos_y;
 	int		pixel_count_x;
 	int		pixel_count_y;
-	int		move_draw_count;
+	
+	int		move_draw_count; //
+
+	int		player_tex;
 }				t_pl;
 
 typedef struct s_texture
@@ -168,9 +174,13 @@ typedef struct s_game
 	t_img	img;
 	t_tex	tex;
 	t_pl	pl;
+	int		key_code;	
 	bool	key;
 	bool	move;
 	bool	escape;
+
+	int		y_pixel;
+	int		x_pixel;
 }				t_game;
 
 // Determines if the command line argument is valid.
@@ -207,7 +217,7 @@ void	draw_player_image(t_game *game, int *texture);
 void	draw_texture(t_game *game, int *texture, int ry, int rx);
 
 //
-void	draw_player_texture(t_game *game, int *texture);
+void	draw_player_texture(t_game *game, int *texture, int y_pixel, int x_pixel);
 
 // Draw a color at the specified location.
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
@@ -223,7 +233,6 @@ void	init_window(t_game *game);
 
 // move_player.c
 int		move_player(int key_code, t_game *game); //
-int		change_direction(int key_code, t_game *game);
 
 // main_loop.c
 int		main_loop(t_game *game); //
