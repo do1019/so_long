@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:49:32 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 22:47:40 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/03 23:56:06 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,26 @@
 const char	*g_base_tex_path[] = {
 	"assets/wall/wallA.xpm",
 	"assets/floor/floorB.xpm",
-	"assets/exit/exitA.xpm",
+	"assets/exit/exitB2.xpm",
 	"assets/sprite/spriteA.xpm",
 };
 
 const char	*g_player_tex_path[] = {
 	"assets/player/playerA/front/front1.xpm",
 	"assets/player/playerA/front/front2.xpm",
+	"assets/player/playerA/front/front1.xpm",
 	"assets/player/playerA/front/front3.xpm",
 	"assets/player/playerA/back/back1.xpm",
 	"assets/player/playerA/back/back2.xpm",
+	"assets/player/playerA/back/back1.xpm",
 	"assets/player/playerA/back/back3.xpm",
 	"assets/player/playerA/left/left1.xpm",
 	"assets/player/playerA/left/left2.xpm",
+	"assets/player/playerA/left/left1.xpm",
 	"assets/player/playerA/left/left3.xpm",
 	"assets/player/playerA/right/right1.xpm",
 	"assets/player/playerA/right/right2.xpm",
+	"assets/player/playerA/right/right1.xpm",
 	"assets/player/playerA/right/right3.xpm",
 };
 

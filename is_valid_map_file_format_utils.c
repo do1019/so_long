@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:44:06 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 23:36:17 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/04 00:26:04 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	is_map_error(t_game *game)
 void	check_requirements(char c, t_game *game)
 {
 	if (c == 'C')
-		game->map.collectible = true;
+		game->map.collectible_count++;
 	else if (c == 'E')
 		game->map.map_exit = true;
 	else if (c == 'P')
