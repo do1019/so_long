@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:49:32 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/03 23:56:06 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 08:45:58 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@ const char	*g_base_tex_path[] = {
 	"assets/wall/wallA.xpm",
 	"assets/floor/floorB.xpm",
 	"assets/exit/exitB2.xpm",
-	"assets/sprite/spriteA.xpm",
+	"assets/sprite/spriteB/spriteB1.xpm",
+	"assets/sprite/spriteB/spriteB2.xpm",
+	"assets/sprite/spriteB/spriteB3.xpm",
+	"assets/sprite/spriteB/spriteB4.xpm",
+	"assets/sprite/spriteB/spriteB5.xpm",
+	"assets/sprite/spriteB/spriteB6.xpm",
+	"assets/sprite/spriteB/spriteB7.xpm",
+	"assets/sprite/spriteB/spriteB8.xpm",
 };
 
 const char	*g_player_tex_path[] = {
@@ -46,11 +53,14 @@ static void	init_textures_buffer(t_game *game)
 	wrapped_malloc((void **)&game->tex.wall, sizeof(int) * TEX_SIZE);
 	wrapped_malloc((void **)&game->tex.floor, sizeof(int) * TEX_SIZE);
 	wrapped_malloc((void **)&game->tex.exit, sizeof(int) * TEX_SIZE);
-	wrapped_malloc((void **)&game->tex.sprite, sizeof(int) * TEX_SIZE);
 	wrapped_malloc((void **)&game->tex.player, sizeof(int *) * PLAYER_TEX_NUM);
+	wrapped_malloc((void **)&game->tex.sprite, sizeof(int *) * SPRITE_TEX_NUM);
 	i = -1;
 	while (++i < PLAYER_TEX_NUM)
 		wrapped_malloc((void **)&game->tex.player[i], sizeof(int) * TEX_SIZE);
+	i = -1;
+	while (++i < SPRITE_TEX_NUM)
+		wrapped_malloc((void **)&game->tex.sprite[i], sizeof(int) * TEX_SIZE);
 }
 
 // Check for errors in xpm and store the loaded image data in the buffer.
@@ -81,12 +91,15 @@ static void	load_image(t_game *game, int *texture, const char *tex_path)
 void	load_textures(t_game *game)
 {
 	int	i;
+
 	init_textures_buffer(game);
 	load_image(game, game->tex.wall, g_base_tex_path[WALL]);
 	load_image(game, game->tex.floor, g_base_tex_path[FLOOR]);
 	load_image(game, game->tex.exit, g_base_tex_path[EXIT]);
-	load_image(game, game->tex.sprite, g_base_tex_path[SPRITE]);
 	i = -1;
 	while (++i < PLAYER_TEX_NUM)
 		load_image(game, game->tex.player[i], g_player_tex_path[i]);
+	i = -1;
+	while (++i < SPRITE_TEX_NUM)
+		load_image(game, game->tex.sprite[i], g_base_tex_path[i + SPRITE]);
 }

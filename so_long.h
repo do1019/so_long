@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/04 01:11:40 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 08:49:33 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@
 # define TILE_SIZE 32
 # define TEX_SIZE 1024
 # define PLAYER_TEX_NUM 16
+# define SPRITE_TEX_NUM 8
 
 // Color of transparent area
-# define TEX_SPRITE_BACK -16777216
+# define TEX_SPRITE_BACK 16777215
 # define TEX_PLAYER_BACK 262660
 # define TEX_EXIT_BACK 4007227
 
@@ -126,8 +127,9 @@ typedef struct s_texture
 	int		*wall;
 	int		*floor;
 	int		*exit;
-	int		*sprite;
+	//int		*sprite;
 	int		**player;
+	int		**sprite;
 	int		**enemy;
 	int		**movement;
 }				t_tex;

@@ -6,11 +6,24 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:53:54 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/04 01:19:16 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 08:50:10 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static bool	is_sprite_texture(t_game *game, int *texture)
+{
+	int	i;
+
+	i = -1;
+	while (++i < SPRITE_TEX_NUM)
+	{
+		if (texture == game->tex.sprite[i])
+			return (true);
+	}
+	return (false);
+}
 
 static bool	is_player_texture(t_game *game, int *texture)
 {
@@ -47,13 +60,15 @@ void	draw_texture(t_game *game, int *texture, int ry, int rx)
 		x = -1;
 		while (++x < TILE_SIZE)
 		{
-			if (!(texture == game->tex.sprite && \
+			if (!(is_sprite_texture(game, texture) && \
 			texture[i] == TEX_SPRITE_BACK) && \
 			!(is_player_texture(game, texture) && \
 			texture[i] == TEX_PLAYER_BACK) && \
 			!(texture == game->tex.exit && texture[i] == TEX_EXIT_BACK))
 			{
 				my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);
+				if (texture == game->tex.sprite[0])
+					printf("%d\n", texture[i]);
 			}
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:28:49 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 08:04:49 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 08:39:01 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main_loop(t_game *game)
 	if (game->pl.player_tex == MOTION_RESET)
 		game->pl.player_tex = 0;
 	draw_base_image(game);
-	draw_image(game, 'C', game->tex.sprite);
+	draw_image(game, 'C', game->tex.sprite[0]);
 	draw_player_image(game, \
 		game->tex.player[game->pl.player_tex + game->pl.direction]);
 	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
