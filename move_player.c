@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:07:19 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 10:39:20 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 10:46:46 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	is_collectible(t_game *game)
 		game->sp.collectible_acquisition_count = NO_INDICATE_DELAY;
 		game->sp.prev_collectible_y = game->pl.player_pos_y;
 		game->sp.prev_collectible_x = game->pl.player_pos_x;
-		//game->map.map[game->sp.prev_collectible_y][game->sp.prev_collectible_x] = '0';
 		game->sp.sprite_draw_count = DRAW_FRAME;
 		game->sp.sprite_tex = 0;
 	}
