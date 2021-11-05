@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 12:50:11 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 21:46:07 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 # define SUCCESS 1
 # define ERROR -1
-
 
 // MAP
 # define MIN_WALL_LIMIT 3
@@ -67,8 +66,8 @@
 # define RIGHT 12
 
 // Motion drawning related
-# define MOTION_SWITCH 8
-# define PL_MOTION_RESET 4
+# define PLAYER_MOTION_SWITCH 8
+# define PLAYER_MOTION_RESET 4
 # define NO_INDICATE_DELAY 16
 # define DRAW_FRAME 32
 # define WAIT_ESCAPE 60
@@ -206,6 +205,9 @@ void	store_map(char **argv, t_game *game);
 // Load textures.
 void	load_textures(t_game *game);
 
+// Main loop.
+int		main_loop(t_game *game);
+
 // Draw the walls, floor, and exits.
 void	draw_base_image(t_game *game);
 
@@ -244,8 +246,21 @@ void	init_window(t_game *game);
 // Action when a key is pressed.
 int		move_player(int key_code, t_game *game);
 
-// Main loop.
-int		main_loop(t_game *game);
+// Action when w key is pressed.
+void	move_with_w(t_game *game);
+
+// Action when a key is pressed.
+void	move_with_a(t_game *game);
+
+// Action when s key is pressed.
+void	move_with_s(t_game *game);
+
+// Action when d key is pressed.
+void	move_with_d(t_game *game);
+
+// If you pick up a collectible, reduce the collectible count.
+// And turn the map into a fllor.
+void	is_collectible(t_game *game);
 
 // it contains open function, 
 // and calls perror and exit functions if there is an error.

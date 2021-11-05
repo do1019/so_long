@@ -6,15 +6,13 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:07:19 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 12:54:01 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 19:54:28 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// If you pick up a collectible, reduce the collectible count.
-// And turn the map into a fllor.
-static void	is_collectible(t_game *game)
+void	is_collectible(t_game *game)
 {
 	if (game->map.map[game->pl.player_pos_y][game->pl.player_pos_x] == 'C')
 	{
@@ -43,10 +41,8 @@ static void	change_direction(int key_code, t_game *game)
 		exit(EXIT_SUCCESS);
 }
 
-// According to the keycode, determine whether the destination is a wall or not.
-static bool	is_wall(t_game *game, int key_code)
+static bool	_is_wall(int key_code, t_game *game)
 {
-	change_direction(key_code, game);
 	if (key_code == W || key_code == ARROW_UP)
 	{
 		if (game->map.map[game->pl.player_pos_y - 1] \
@@ -74,70 +70,27 @@ static bool	is_wall(t_game *game, int key_code)
 	return (false);
 }
 
+// According to the keycode, determine whether the destination is a wall or not.
+static bool	is_wall(t_game *game, int key_code)
+{
+	change_direction(key_code, game);
+	return (_is_wall(key_code, game));
+}
+
 int	move_player(int key_code, t_game *game)
 {
 	if (!game->escape && !game->move)
 	{
+		game->y_pixel = 0;
+		game->x_pixel = 0;
 		if ((key_code == W || key_code == ARROW_UP) && !is_wall(game, W))
-		{
-			game->key_code = W;
-			game->pl.prev_pl_pos_x = game->pl.player_pos_x;
-			game->pl.prev_pl_pos_y = game->pl.player_pos_y;
-			game->pl.player_pos_y--;
-			is_collectible(game);
-			game->pl.direction = BACK;
-			game->pl.move_count++;
-			game->move = true;
-			game->pl.move_draw_count = 16;
-			game->y_pixel = 0;
-			game->x_pixel = 0;
-			printf("move_count %d\n", game->pl.move_count);
-		}
+			move_with_w(game);
 		else if ((key_code == A || key_code == ARROW_L) && !is_wall(game, A))
-		{
-			game->key_code = A;
-			game->pl.prev_pl_pos_x = game->pl.player_pos_x;
-			game->pl.prev_pl_pos_y = game->pl.player_pos_y;
-			game->pl.player_pos_x--;
-			is_collectible(game);
-			game->pl.direction = LEFT;
-			game->pl.move_count++;
-			game->move = true;
-			game->pl.move_draw_count = 16;
-			game->y_pixel = 0;
-			game->x_pixel = 0;
-			printf("move_count %d\n", game->pl.move_count);
-		}	
+			move_with_a(game);
 		else if ((key_code == S || key_code == ARROW_DOWN) && !is_wall(game, S))
-		{
-			game->key_code = S;
-			game->pl.prev_pl_pos_x = game->pl.player_pos_x;
-			game->pl.prev_pl_pos_y = game->pl.player_pos_y;
-			game->pl.player_pos_y++;
-			is_collectible(game);
-			game->pl.direction = FRONT;
-			game->pl.move_count++;
-			game->move = true;
-			game->pl.move_draw_count = 16;
-			game->y_pixel = 0;
-			game->x_pixel = 0;
-			printf("move_count %d\n", game->pl.move_count);
-		}
+			move_with_s(game);
 		else if ((key_code == D || key_code == ARROW_R) && !is_wall(game, D))
-		{
-			game->key_code = D;
-			game->pl.prev_pl_pos_x = game->pl.player_pos_x;
-			game->pl.prev_pl_pos_y = game->pl.player_pos_y;
-			game->pl.player_pos_x++;
-			is_collectible(game);
-			game->pl.direction = RIGHT;
-			game->pl.move_count++;
-			game->move = true;
-			game->pl.move_draw_count = 16;
-			game->y_pixel = 0;
-			game->x_pixel = 0;
-			printf("move_count %d\n", game->pl.move_count);
-		}
+			move_with_d(game);
 	}
 	else if (key_code == ESC)
 		exit(EXIT_SUCCESS);

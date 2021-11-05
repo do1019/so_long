@@ -6,11 +6,20 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:47:17 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 12:51:48 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 21:42:43 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	my_mlx_pixel_put(t_game *game, int y, int x, int color)
+{
+	char	*dst;
+
+	dst = (char *)game->img.data + \
+		(y * game->img.line_length + x * (game->img.bpp / 8));
+	*(unsigned int *)dst = color;
+}
 
 int	wrapped_open(char **argv)
 {
