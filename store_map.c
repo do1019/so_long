@@ -6,28 +6,11 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 22:44:03 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 22:32:41 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:52:22 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-//// For debug
-// static void display_map(t_game *game)
-// {
-// 	int	i;
-// 	int j;
-
-// 	setvbuf(stdout, (char *)NULL, _IONBF, 0);
-// 	i = -1;
-// 	while (++i < game->map.column)
-// 	{
-// 		j = -1;
-// 		while (++j < game->map.row)
-// 			printf("%d", game->map.map[i][j]);
-// 		printf("\n");
-// 	}
-// }
 
 // Allocate heap memory in map of game struct
 static void	allocate_memory_in_map(t_game *game)
@@ -47,7 +30,6 @@ static char	*connect_line(char *connected_line, char *line)
 		putstr_perror_exit(ERR_MALLOC);
 	return (ret_line);
 }
-
 
 void	store_map(char **argv, t_game *game)
 {

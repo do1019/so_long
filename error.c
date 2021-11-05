@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:43:36 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/02 23:09:13 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:39:59 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ const char	*g_errstr[] = {
 	"Map parsing : Invalid amount of player spawn points : Expected 1",
 	"Map parsing : Invalid amount of collectible points : Expected >= 1",
 	"Map parsing : Invalid amount of exit points : Expected >= 1",
+	"Map parsing : Invalid size : Map is too big, resolution is maxed out.",
 	"Assets : Invalid xpm file : Failed xpm file to image",
 	"Assets : Invalid xpm file : Valid only for xpm of size 32 * 32",
 };

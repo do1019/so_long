@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:07:19 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 10:46:46 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:54:01 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,26 @@ static bool	is_wall(t_game *game, int key_code)
 	change_direction(key_code, game);
 	if (key_code == W || key_code == ARROW_UP)
 	{
-		if (game->map.map[game->pl.player_pos_y - 1][game->pl.player_pos_x] == '1')
+		if (game->map.map[game->pl.player_pos_y - 1] \
+		[game->pl.player_pos_x] == '1')
 			return (true);
 	}
 	else if (key_code == A || key_code == ARROW_L)
 	{
-		if (game->map.map[game->pl.player_pos_y][game->pl.player_pos_x - 1] == '1')
+		if (game->map.map[game->pl.player_pos_y] \
+		[game->pl.player_pos_x - 1] == '1')
 			return (true);
 	}
 	else if (key_code == S || key_code == ARROW_DOWN)
 	{
-		if (game->map.map[game->pl.player_pos_y + 1][game->pl.player_pos_x] == '1')
+		if (game->map.map[game->pl.player_pos_y + 1] \
+		[game->pl.player_pos_x] == '1')
 			return (true);
 	}
 	else if (key_code == D || key_code == ARROW_R)
 	{
-		if (game->map.map[game->pl.player_pos_y][game->pl.player_pos_x + 1] == '1')
+		if (game->map.map[game->pl.player_pos_y] \
+		[game->pl.player_pos_x + 1] == '1')
 			return (true);
 	}
 	return (false);
@@ -104,7 +108,7 @@ int	move_player(int key_code, t_game *game)
 			game->x_pixel = 0;
 			printf("move_count %d\n", game->pl.move_count);
 		}	
-		else if ((key_code == S || key_code == ARROW_DOWN) && !is_wall(game, S) )
+		else if ((key_code == S || key_code == ARROW_DOWN) && !is_wall(game, S))
 		{
 			game->key_code = S;
 			game->pl.prev_pl_pos_x = game->pl.player_pos_x;

@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 10:40:05 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:50:11 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # define SUCCESS 1
 # define ERROR -1
 
-//# define MAX_ROW 0
-//# define MAX_COL 0
-# define MAX_MAP 20
+
+// MAP
 # define MIN_WALL_LIMIT 3
 
+// Texture
 # define TILE_SIZE 32
 # define TEX_SIZE 1024
 # define PLAYER_TEX_NUM 16
@@ -60,12 +60,13 @@
 # define ARROW_UP 65362
 # define ARROW_DOWN 65364
 
-// direction
+// Direction
 # define FRONT 0
 # define BACK 4
 # define LEFT 8
 # define RIGHT 12
 
+// Motion drawning related
 # define MOTION_SWITCH 8
 # define PL_MOTION_RESET 4
 # define NO_INDICATE_DELAY 16
@@ -86,6 +87,7 @@ enum	e_err {
 	ERR_MAPSPAWN,
 	ERR_NOCOLLECT,
 	ERR_MAPEXIT,
+	ERR_INVSIZEMAP,
 	ERR_FAILXPM,
 	ERR_INVXPM,
 };
@@ -96,21 +98,6 @@ enum	e_basic_tex_path {
 	EXIT,
 	SPRITE,
 };
-
-// enum	e_player_tex_path {
-// 	FRONT1,
-// 	FRONT2,
-// 	FRONT3,
-// 	BACK1,
-// 	BACK2,
-// 	BACK3,
-// 	LEFT1,
-// 	LEFT2,
-// 	LEFT3,
-// 	RIGHT1,
-// 	RIGHT2,
-// 	RIGHT3,
-// } ;
 
 typedef struct s_sprite
 {
@@ -201,10 +188,16 @@ void	is_valid_map_file(char **argv, t_game *game);
 // Determine if the format is valid.
 int		is_valid_map_format(char *line, t_game *game);
 
-// is_valid_map_file_format_utils.c
+// Determine if the map is surrounded by walls
 bool	is_surrounded_by_walls(t_game *game, char *line);
+
+// Identify the elements required for map composition.
 void	check_requirements(char c, t_game *game);
+
+// Determination of INVCHRMAP SHAPEMAP NOSURRWALL
 bool	is_map_error(t_game *game);
+
+// Determine if a character is allowed as a map.
 bool	is_map(char c);
 
 // Store map to an array of int.
@@ -222,6 +215,7 @@ void	draw_image(t_game *game, char map_char, int *texture);
 // Draw the player image;
 void	draw_player_image(t_game *game, int *texture);
 
+// Draw the sprite image;
 void	draw_sprite_image(t_game *game, int *texture);
 
 // Draw a texture at the specified location.
@@ -231,6 +225,7 @@ void	draw_texture(t_game *game, int *texture, int ry, int rx);
 void	draw_player_texture(t_game *game, int *texture, \
 	int y_pixel, int x_pixel);
 
+// Draw a sprite texture.
 void	draw_sprite_texture(t_game *game, int *texture, \
 		int y_pixel, int x_pixel);
 
@@ -246,8 +241,8 @@ void	init_img(t_game *game);
 // Initialize window.
 void	init_window(t_game *game);
 
-// move_player.c
-int		move_player(int key_code, t_game *game); //
+// Action when a key is pressed.
+int		move_player(int key_code, t_game *game);
 
 // Main loop.
 int		main_loop(t_game *game);
@@ -262,10 +257,10 @@ int		wrapped_open(char **argv);
 void	wrapped_malloc(void **ptr, size_t size);
 
 // Close a window.
-int	close_window(void);
+int		close_window(void);
 
 // Redraw.
-int	redraw(t_game *game);
+int		redraw(t_game *game);
 
 // Receive the number corresponding to errstr, output it, and exit.
 int		putstr_error_exit(int num);

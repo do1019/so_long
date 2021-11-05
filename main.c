@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/04 01:07:37 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:35:43 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,16 @@ static void	get_exit_location(t_game *game)
 
 static void	prepare_start_game(t_game *game)
 {
+	int	x;
+	int	y;
+
 	init_mlx(game);
 	load_textures(game);
 	game->x_render_size = game->map.row * TILE_SIZE;
 	game->y_render_size = game->map.column * TILE_SIZE;
+	mlx_get_screen_size(game->mlx, &x, &y);
+	if (game->x_render_size > x || game->y_render_size > y)
+		putstr_error_exit(ERR_INVSIZEMAP);
 	init_img(game);
 	init_window(game);
 	get_player_position(game);
