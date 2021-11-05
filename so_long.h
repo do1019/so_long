@@ -6,17 +6,15 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 22:43:31 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 23:25:40 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdio.h>
 # include <stdbool.h>
 # include <fcntl.h>
-# include <math.h>
 
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
