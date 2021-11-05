@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:50:04 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/04 00:19:48 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 10:07:37 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,17 @@ void	draw_player_image(t_game *game, int *texture)
 		}
 		game->pl.move_draw_count--;
 	}
+}
+
+void	draw_sprite_image(t_game *game, int *texture)
+{
+	int	i;
+
+	i = -1;
+	while (++i < TILE_SIZE)
+	{
+		draw_sprite_texture(game, texture, game->sp.prev_collectible_y, game->sp.prev_collectible_x);
+		mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
+	}
+	game->sp.sprite_draw_count--;
 }

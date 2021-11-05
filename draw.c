@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:53:54 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 09:08:09 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 10:18:39 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,32 @@ void	draw_player_texture(t_game *game, int *texture, \
 				my_mlx_pixel_put(game, y + \
 				game->pl.prev_pl_pos_y * 32 + y_pixel, \
 				x + game->pl.prev_pl_pos_x * 32 + x_pixel, texture[i]);
+			}
+			i++;
+		}
+	}
+}
+
+void	draw_sprite_texture(t_game *game, int *texture, \
+		int y_pixel, int x_pixel)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	i = 0;
+	y = -1;
+	while (++y < TILE_SIZE)
+	{
+		x = -1;
+		while (++x < TILE_SIZE)
+		{
+			if (!(is_sprite_texture(game, texture) && \
+			texture[i] == TEX_SPRITE_BACK))
+			{
+				my_mlx_pixel_put(game, y + \
+				y_pixel * 32, \
+				x + x_pixel * 32, texture[i]);
 			}
 			i++;
 		}

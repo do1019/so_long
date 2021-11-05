@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 09:07:16 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 10:40:05 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@
 # define RIGHT 12
 
 # define MOTION_SWITCH 8
-# define MOTION_RESET 4
+# define PL_MOTION_RESET 4
+# define NO_INDICATE_DELAY 16
+# define DRAW_FRAME 32
 # define WAIT_ESCAPE 60
 
 enum	e_err {
@@ -110,6 +112,17 @@ enum	e_basic_tex_path {
 // 	RIGHT3,
 // } ;
 
+typedef struct s_sprite
+{
+	int		prev_collectible_y;
+	int		prev_collectible_x;
+	int		collectible_acquisition_count;
+	bool	collectible_acquisition;
+	bool	animation_start;
+	int		sprite_tex;
+	int		sprite_draw_count;
+}				t_sp;
+
 typedef struct s_player
 {
 	int		player_pos_x;
@@ -127,7 +140,6 @@ typedef struct s_texture
 	int		*wall;
 	int		*floor;
 	int		*exit;
-	//int		*sprite;
 	int		**player;
 	int		**sprite;
 	int		**enemy;
@@ -177,6 +189,7 @@ typedef struct s_game
 	t_img	img;
 	t_tex	tex;
 	t_pl	pl;
+	t_sp	sp;
 }				t_game;
 
 // Determines if the command line argument is valid.
@@ -209,12 +222,17 @@ void	draw_image(t_game *game, char map_char, int *texture);
 // Draw the player image;
 void	draw_player_image(t_game *game, int *texture);
 
+void	draw_sprite_image(t_game *game, int *texture);
+
 // Draw a texture at the specified location.
 void	draw_texture(t_game *game, int *texture, int ry, int rx);
 
 // Draw a player texture.
 void	draw_player_texture(t_game *game, int *texture, \
 	int y_pixel, int x_pixel);
+
+void	draw_sprite_texture(t_game *game, int *texture, \
+		int y_pixel, int x_pixel);
 
 // Draw a color at the specified location.
 void	my_mlx_pixel_put(t_game *game, int y, int x, int color);
