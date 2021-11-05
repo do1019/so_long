@@ -20,6 +20,7 @@ SRCS := main.c \
 		draw_image.c \
 		draw.c \
 		move_player.c \
+		move_player_utils.c \
 		error.c \
 		free.c \
 		utils.c

@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:53:54 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 10:18:39 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 21:42:35 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,6 @@ static bool	is_player_texture(t_game *game, int *texture)
 			return (true);
 	}
 	return (false);
-}
-
-void	my_mlx_pixel_put(t_game *game, int y, int x, int color)
-{
-	char	*dst;
-
-	dst = (char *)game->img.data + \
-		(y * game->img.line_length + x * (game->img.bpp / 8));
-	*(unsigned int *)dst = color;
 }
 
 void	draw_texture(t_game *game, int *texture, int ry, int rx)

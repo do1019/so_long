@@ -6,10 +6,9 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:50:04 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 10:07:37 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 22:42:15 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "so_long.h"
 
@@ -26,7 +25,7 @@ void	draw_base_image(t_game *game)
 		{
 			if (game->map.map[y][x] == '1')
 				draw_texture(game, game->tex.wall, y, x);
-			else if (y == game->map.exit_loc_y && x == game->map.exit_loc_x)
+			else if (game->map.map[y][x] == 'E')
 			{
 				draw_texture(game, game->tex.floor, y, x);
 				draw_texture(game, game->tex.exit, y, x);
@@ -59,7 +58,8 @@ void	draw_player_image(t_game *game, int *texture)
 	int	i;
 
 	if (!game->move)
-		draw_texture(game, texture, game->pl.player_pos_y, game->pl.player_pos_x);
+		draw_texture(game, texture, game->pl.player_pos_y, \
+		game->pl.player_pos_x);
 	else
 	{
 		i = -1;
@@ -74,7 +74,8 @@ void	draw_player_image(t_game *game, int *texture)
 		while (++i < TILE_SIZE)
 		{
 			draw_player_texture(game, texture, game->y_pixel, game->x_pixel);
-			mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
+			mlx_put_image_to_window(game->mlx, game->window, \
+			game->img.img, 0, 0);
 		}
 		game->pl.move_draw_count--;
 	}
@@ -87,7 +88,8 @@ void	draw_sprite_image(t_game *game, int *texture)
 	i = -1;
 	while (++i < TILE_SIZE)
 	{
-		draw_sprite_texture(game, texture, game->sp.prev_collectible_y, game->sp.prev_collectible_x);
+		draw_sprite_texture(game, texture, game->sp.prev_collectible_y, \
+		game->sp.prev_collectible_x);
 		mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
 	}
 	game->sp.sprite_draw_count--;
