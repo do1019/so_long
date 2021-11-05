@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:53:54 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 08:50:10 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 09:08:09 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ void	draw_texture(t_game *game, int *texture, int ry, int rx)
 			!(texture == game->tex.exit && texture[i] == TEX_EXIT_BACK))
 			{
 				my_mlx_pixel_put(game, y + ry * 32, x + rx * 32, texture[i]);
-				if (texture == game->tex.sprite[0])
-					printf("%d\n", texture[i]);
 			}
 			i++;
 		}
