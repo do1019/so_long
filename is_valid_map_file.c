@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:55:58 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/04 00:25:51 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 11:26:16 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ void	is_valid_map_file(char **argv, t_game *game)
 		free_sp_rt(&line, 0);
 	}
 	game->map.final_row = true;
+	//printf("s\n");
 	if (is_valid_map_format(line, game) == ERROR)
 		exit(EXIT_FAILURE);
+	//printf("a\n");
 	if (!final_check(game))
 		putstr_error_exit(game->map.errnum);
 	free_sp_rt(&line, 0);
