@@ -6,14 +6,12 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:28:49 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 22:41:28 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/06 02:43:59 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	g_loop_called_times = 0;
-static int	g_escape_count = 0;
 
 // When you pick up a collectible, it rewrites map
 // to floor and sets flag to start the sprite animation.
@@ -36,9 +34,9 @@ static void	collectible_rerated_process(t_game *game)
 // turns a specified number of times.
 static void	switch_player_motion(t_game *game)
 {
-	if (g_loop_called_times == PLAYER_MOTION_SWITCH)
+	if (game->loop_called_times == PLAYER_MOTION_SWITCH)
 	{
-		g_loop_called_times = 0;
+		game->loop_called_times = 0;
 		if (game->move)
 			game->pl.player_tex++;
 	}
@@ -55,14 +53,14 @@ static void	is_escape(t_game *game)
 
 int	main_loop(t_game *game)
 {
-	g_loop_called_times++;
+	game->loop_called_times++;
 	collectible_rerated_process(game);
 	if (game->pl.move_draw_count == 0)
 		game->move = false;
-	if (g_escape_count == WAIT_ESCAPE)
+	if (game->escape_count == WAIT_ESCAPE)
 		exit(EXIT_SUCCESS);
 	if (game->escape)
-		g_escape_count++;
+		game->escape_count++;
 	switch_player_motion(game);
 	if (game->pl.player_tex == PLAYER_MOTION_RESET)
 		game->pl.player_tex = 0;

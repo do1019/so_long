@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 23:25:40 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/06 02:43:26 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,8 @@ typedef struct s_game
 	int		key_code;
 	int		y_pixel;
 	int		x_pixel;
+	int		loop_called_times;
+	int		escape_count;
 	bool	move;
 	bool	escape;
 	t_map	map;
