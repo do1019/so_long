@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 04:50:04 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 21:43:53 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 22:42:15 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_base_image(t_game *game)
 		{
 			if (game->map.map[y][x] == '1')
 				draw_texture(game, game->tex.wall, y, x);
-			else if (y == game->map.exit_loc_y && x == game->map.exit_loc_x)
+			else if (game->map.map[y][x] == 'E')
 			{
 				draw_texture(game, game->tex.floor, y, x);
 				draw_texture(game, game->tex.exit, y, x);

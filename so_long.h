@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:33 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 21:46:07 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 22:43:31 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,6 @@ typedef struct s_map
 	int		column;
 	int		row;
 	int		errnum;
-	int		exit_loc_y;
-	int		exit_loc_x;	
 }				t_map;
 
 typedef struct s_game

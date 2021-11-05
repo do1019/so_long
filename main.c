@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:54:52 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 12:35:43 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 22:43:45 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,6 @@ static void	get_player_position(t_game *game)
 	}	
 }
 
-static void	get_exit_location(t_game *game)
-{
-	int	i;
-
-	i = -1;
-	while (++i < game->map.column * game->map.row)
-	{
-		if (game->map.base_map[i] == 'E')
-		{
-			game->map.exit_loc_y = i / game->map.row;
-			game->map.exit_loc_x = i % game->map.row;
-		}	
-	}	
-}
-
 static void	prepare_start_game(t_game *game)
 {
 	int	x;
@@ -59,7 +44,6 @@ static void	prepare_start_game(t_game *game)
 	init_img(game);
 	init_window(game);
 	get_player_position(game);
-	get_exit_location(game);
 }
 
 int	main(int argc, char **argv)

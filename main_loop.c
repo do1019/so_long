@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:28:49 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 21:47:06 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/05 22:41:28 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ static void	switch_player_motion(t_game *game)
 // has collected all collectibles, the escape flag is set to true.
 static void	is_escape(t_game *game)
 {
-	if (game->pl.player_pos_x == game->map.exit_loc_x && \
-		game->pl.player_pos_y == game->map.exit_loc_y && \
-		!game->map.collectible_count)
+	if (game->map.map[game->pl.player_pos_y] \
+	[game->pl.player_pos_x] == 'E' && !game->map.collectible_count)
 		game->escape = true;
 }
 
