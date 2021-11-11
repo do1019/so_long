@@ -6,12 +6,11 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:28:49 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/06 02:43:59 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/12 07:38:25 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 // When you pick up a collectible, it rewrites map
 // to floor and sets flag to start the sprite animation.
