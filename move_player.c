@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:07:19 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/05 19:54:28 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/13 20:57:48 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	move_player(int key_code, t_game *game)
 		else if ((key_code == D || key_code == ARROW_R) && !is_wall(game, D))
 			move_with_d(game);
 	}
-	else if (key_code == ESC)
+	if (key_code == ESC)
 		exit(EXIT_SUCCESS);
 	return (0);
 }

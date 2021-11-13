@@ -6,7 +6,7 @@
 /*   By: dogata <dogata@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:43:36 by dogata            #+#    #+#             */
-/*   Updated: 2021/11/12 07:38:06 by dogata           ###   ########.fr       */
+/*   Updated: 2021/11/13 20:37:56 by dogata           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ const char	*g_errstr[] = {
 	"Argument : Invalid file extension : Expected \"*.ber\"",
 	"Argument : Failed to open the map file",
 	"Map parsing : Invalid character : \
-		Only '0', '1', 'C', 'E', and 'P' are valid.",
+	Only '0', '1', 'C', 'E', and 'P' are valid.",
 	"Map parsing : Map is not surrounded by walls",
 	"Map parsing : Invalid shape : Map must be rectangular",
 	"Map parsing : Invalid amount of player spawn points : Expected 1",
