@@ -34,6 +34,11 @@ $(NAME): $(OBJS)
 	make -C $(MINILIBX_DIR)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MINILIBX_DIR)$(NAME_MINILIBX) $(LIBFT_DIR)$(NAME_LIBFT) $(OFLAGS)
 
+bonus: $(NAME)
+	@make bonus -C $(LIBFT_DIR)
+	make -C $(MINILIBX_DIR)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MINILIBX_DIR)$(NAME_MINILIBX) $(LIBFT_DIR)$(NAME_LIBFT) $(OFLAGS)
+
 debug: $(NAME)
 	@make bonus -C $(LIBFT_DIR)
 	make -C $(MINILIBX_DIR)
