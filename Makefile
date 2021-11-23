@@ -45,10 +45,14 @@ debug: $(NAME)
 	$(CC) $(CFLAGS) -g -fsanitize=address -o $(NAME) $(OBJS) $(MINILIBX_DIR)$(NAME_MINILIBX) $(LIBFT_DIR)$(NAME_LIBFT) $(OFLAGS)
 
 clean:
-	rm -f $(OBJS) $(LIBFT_DIR)*.o $(MINILIBX_DIR)*.o
+	rm -f $(OBJS) 
+	@make clean -C $(LIBFT_DIR)
+	@make clean -C $(MINILIBX_DIR)
 
 fclean: clean
-	rm -f $(NAME) $(LIBFT_DIR)$(NAME_LIBFT) $(MINILIBX_DIR)$(NAME_MINILIBX)
+	rm -f $(NAME)
+	@make fclean -C $(LIBFT_DIR)
+	@make clean -C $(MINILIBX_DIR)
 
 re: fclean all
 
